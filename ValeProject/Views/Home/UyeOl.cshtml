@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "UyeOl";
+}
+
+<link href="~/css/UyeOl_Style.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+<!-- DatePicker -->
+<script type="text/javascript" src="/scripts/moment.min.js"></script>
+<script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="/scripts/bootstrap-datetimepicker.js"></script>
+<link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+</script>
+
+<div class="container">
+    <div class="row main">
+        
+        <div class="main-login main-center">
+            <center><h3>Üye Ol</h3></center>
+            <form class="form-horizontal" method="post" action="#">
+                <div class="form-group">
+                    <label for="name" class="cols-sm-2 control-label">Ad</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Ad" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="cols-sm-2 control-label">Soyad</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Soyad" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="cols-sm-2 control-label">Email</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="cols-sm-2 control-label">Cinsiyet</label>
+                    <div class="cols-sm-10">
+                        <select id="selectbasic" name="selectbasic" class="form-control input-md">
+                            <option>Erkek</option>
+                            <option>Kız</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-sm-12'>
+                        <div class="form-group">
+                            <label for="email" class="cols-sm-2 control-label">Doğum Tarihi</label>
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="cols-sm-2 control-label">Adres</label>
+                    <div class="cols-sm-10">
+                        <textarea placeholder="" rows="1" class="form-control"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="cols-sm-2 control-label">Telefon</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone" aria-hidden="true"></i></span>
+                            <input type="tel" class="form-control" name="phone" id="" placeholder="" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                <label for="password" class="cols-sm-2 control-label">Şifre</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                        </span>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Şifre" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirm" class="cols-sm-2 control-label">Şifreyi Doğrula</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                        </span>
+                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Şifreyi Doğrula" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <button type="button" class="btn btn-primary btn-lg btn-block login-button">Kayıt Ol</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd hh:ii' });
+</script>

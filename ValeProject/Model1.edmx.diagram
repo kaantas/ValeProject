@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e0f8c7500a96491c8b8e6b42b56d9566" Name="Diagram1">
+        <EntityTypeShape EntityType="ValeDBModel.Admin" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ValeDBModel.Bilet" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ValeDBModel.Musteri" Width="1.5" PointX="3.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ValeDBModel.Otobus" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ValeDBModel.Personel" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ValeDBModel.Sefer" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ValeDBModel.Sube" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ValeDBModel.SubeBilet" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ValeDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="ValeDBModel.FK_Admin_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="ValeDBModel.FK_Admin_Sube" ManuallyRouted="false" />
+        <AssociationConnector Association="ValeDBModel.FK_SubeBilet_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="ValeDBModel.FK_Bilet_Musteri" ManuallyRouted="false" />
+        <AssociationConnector Association="ValeDBModel.FK_SubeBilet_Bilet" ManuallyRouted="false" />
+        <AssociationConnector Association="ValeDBModel.FK_Sefer_Otobus" ManuallyRouted="false" />
+        <AssociationConnector Association="ValeDBModel.FK_Sefer_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="ValeDBModel.FK_Sefer_Personel1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

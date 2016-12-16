@@ -1,0 +1,653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ValeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="PersonelID" />
+          </Key>
+          <Property Name="PersonelID" Type="int" Nullable="false" />
+          <Property Name="SubeID" Type="int" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Bilet">
+          <Key>
+            <PropertyRef Name="SeferID" />
+            <PropertyRef Name="KoltukNo" />
+          </Key>
+          <Property Name="SeferID" Type="int" Nullable="false" />
+          <Property Name="KoltukNo" Type="int" Nullable="false" />
+          <Property Name="MusteriID" Type="int" />
+          <Property Name="MusteriAd" Type="nvarchar" MaxLength="20" />
+          <Property Name="MusteriSoyad" Type="nvarchar" MaxLength="15" />
+          <Property Name="MusteriCinsiyet" Type="nvarchar" MaxLength="10" />
+          <Property Name="Ucret" Type="float" />
+          <Property Name="IslemZamani" Type="date" />
+          <Property Name="IslemTipi" Type="nvarchar" MaxLength="15" />
+          <Property Name="SatisTipi" Type="nvarchar" MaxLength="15" />
+          <Property Name="BiletTipi" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="MusteriID" />
+          </Key>
+          <Property Name="MusteriID" Type="int" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="20" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="25" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="15" />
+          <Property Name="Cinsiyet" Type="nvarchar" MaxLength="10" />
+          <Property Name="DogumTarihi" Type="date" />
+          <Property Name="Adres" Type="text" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Otobus">
+          <Key>
+            <PropertyRef Name="OtobusID" />
+          </Key>
+          <Property Name="OtobusID" Type="int" Nullable="false" />
+          <Property Name="Plaka" Type="nvarchar" MaxLength="15" />
+          <Property Name="KoltukSayisi" Type="int" />
+          <Property Name="Marka" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="PersonelID" />
+          </Key>
+          <Property Name="PersonelID" Type="int" Nullable="false" />
+          <Property Name="PersonelAd" Type="nvarchar" MaxLength="15" />
+          <Property Name="PersonelSoyad" Type="nvarchar" MaxLength="15" />
+          <Property Name="Cinsiyet" Type="nvarchar" MaxLength="10" />
+          <Property Name="Email" Type="nvarchar" MaxLength="25" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="15" />
+          <Property Name="Adres" Type="text" />
+          <Property Name="Maas" Type="int" />
+          <Property Name="PersonelTipi" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Sefer">
+          <Key>
+            <PropertyRef Name="SeferID" />
+          </Key>
+          <Property Name="SeferID" Type="int" Nullable="false" />
+          <Property Name="KalkisSehri" Type="nvarchar" MaxLength="15" />
+          <Property Name="VarisSehri" Type="nvarchar" MaxLength="15" />
+          <Property Name="OtobusID" Type="int" />
+          <Property Name="SoforID" Type="int" />
+          <Property Name="MuavinID" Type="int" />
+          <Property Name="KalkisZamani" Type="date" />
+          <Property Name="TahminiSure" Type="int" />
+        </EntityType>
+        <EntityType Name="Sube">
+          <Key>
+            <PropertyRef Name="SubeID" />
+          </Key>
+          <Property Name="SubeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubeAdi" Type="nvarchar" MaxLength="20" />
+          <Property Name="SehirAdi" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="SubeBilet">
+          <Key>
+            <PropertyRef Name="SeferID" />
+            <PropertyRef Name="KoltukNo" />
+          </Key>
+          <Property Name="SeferID" Type="int" Nullable="false" />
+          <Property Name="KoltukNo" Type="int" Nullable="false" />
+          <Property Name="PersonelID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Admin_Personel">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="PersonelID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="PersonelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Admin_Sube">
+          <End Role="Sube" Type="Self.Sube" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sube">
+              <PropertyRef Name="SubeID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="SubeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bilet_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+          <End Role="Bilet" Type="Self.Bilet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="MusteriID" />
+            </Principal>
+            <Dependent Role="Bilet">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sefer_Otobus">
+          <End Role="Otobus" Type="Self.Otobus" Multiplicity="0..1" />
+          <End Role="Sefer" Type="Self.Sefer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Otobus">
+              <PropertyRef Name="OtobusID" />
+            </Principal>
+            <Dependent Role="Sefer">
+              <PropertyRef Name="OtobusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sefer_Personel">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Sefer" Type="Self.Sefer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="PersonelID" />
+            </Principal>
+            <Dependent Role="Sefer">
+              <PropertyRef Name="SoforID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sefer_Personel1">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Sefer" Type="Self.Sefer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="PersonelID" />
+            </Principal>
+            <Dependent Role="Sefer">
+              <PropertyRef Name="MuavinID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubeBilet_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="SubeBilet" Type="Self.SubeBilet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="PersonelID" />
+            </Principal>
+            <Dependent Role="SubeBilet">
+              <PropertyRef Name="PersonelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubeBilet_Bilet">
+          <End Role="Bilet" Type="Self.Bilet" Multiplicity="1" />
+          <End Role="SubeBilet" Type="Self.SubeBilet" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Bilet">
+              <PropertyRef Name="SeferID" />
+              <PropertyRef Name="KoltukNo" />
+            </Principal>
+            <Dependent Role="SubeBilet">
+              <PropertyRef Name="SeferID" />
+              <PropertyRef Name="KoltukNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ValeDBModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bilet" EntityType="Self.Bilet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Otobus" EntityType="Self.Otobus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sefer" EntityType="Self.Sefer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sube" EntityType="Self.Sube" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubeBilet" EntityType="Self.SubeBilet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Admin_Personel" Association="Self.FK_Admin_Personel">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Admin_Sube" Association="Self.FK_Admin_Sube">
+            <End Role="Sube" EntitySet="Sube" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bilet_Musteri" Association="Self.FK_Bilet_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Bilet" EntitySet="Bilet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sefer_Otobus" Association="Self.FK_Sefer_Otobus">
+            <End Role="Otobus" EntitySet="Otobus" />
+            <End Role="Sefer" EntitySet="Sefer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sefer_Personel" Association="Self.FK_Sefer_Personel">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Sefer" EntitySet="Sefer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sefer_Personel1" Association="Self.FK_Sefer_Personel1">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Sefer" EntitySet="Sefer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubeBilet_Admin" Association="Self.FK_SubeBilet_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="SubeBilet" EntitySet="SubeBilet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubeBilet_Bilet" Association="Self.FK_SubeBilet_Bilet">
+            <End Role="Bilet" EntitySet="Bilet" />
+            <End Role="SubeBilet" EntitySet="SubeBilet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ValeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="PersonelID" />
+          </Key>
+          <Property Name="PersonelID" Type="Int32" Nullable="false" />
+          <Property Name="SubeID" Type="Int32" />
+          <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Personel" Relationship="Self.FK_Admin_Personel" FromRole="Admin" ToRole="Personel" />
+          <NavigationProperty Name="Sube" Relationship="Self.FK_Admin_Sube" FromRole="Admin" ToRole="Sube" />
+          <NavigationProperty Name="SubeBilet" Relationship="Self.FK_SubeBilet_Admin" FromRole="Admin" ToRole="SubeBilet" />
+        </EntityType>
+        <EntityType Name="Bilet">
+          <Key>
+            <PropertyRef Name="SeferID" />
+            <PropertyRef Name="KoltukNo" />
+          </Key>
+          <Property Name="SeferID" Type="Int32" Nullable="false" />
+          <Property Name="KoltukNo" Type="Int32" Nullable="false" />
+          <Property Name="MusteriID" Type="Int32" />
+          <Property Name="MusteriAd" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriSoyad" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriCinsiyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Ucret" Type="Double" />
+          <Property Name="IslemZamani" Type="DateTime" Precision="0" />
+          <Property Name="IslemTipi" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="SatisTipi" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="BiletTipi" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_Bilet_Musteri" FromRole="Bilet" ToRole="Musteri" />
+          <NavigationProperty Name="SubeBilet" Relationship="Self.FK_SubeBilet_Bilet" FromRole="Bilet" ToRole="SubeBilet" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="MusteriID" />
+          </Key>
+          <Property Name="MusteriID" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DogumTarihi" Type="DateTime" Precision="0" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bilet" Relationship="Self.FK_Bilet_Musteri" FromRole="Musteri" ToRole="Bilet" />
+        </EntityType>
+        <EntityType Name="Otobus">
+          <Key>
+            <PropertyRef Name="OtobusID" />
+          </Key>
+          <Property Name="OtobusID" Type="Int32" Nullable="false" />
+          <Property Name="Plaka" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="KoltukSayisi" Type="Int32" />
+          <Property Name="Marka" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sefer" Relationship="Self.FK_Sefer_Otobus" FromRole="Otobus" ToRole="Sefer" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="PersonelID" />
+          </Key>
+          <Property Name="PersonelID" Type="Int32" Nullable="false" />
+          <Property Name="PersonelAd" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PersonelSoyad" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Maas" Type="Int32" />
+          <Property Name="PersonelTipi" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_Admin_Personel" FromRole="Personel" ToRole="Admin" />
+          <NavigationProperty Name="Sefer" Relationship="Self.FK_Sefer_Personel" FromRole="Personel" ToRole="Sefer" />
+          <NavigationProperty Name="Sefer1" Relationship="Self.FK_Sefer_Personel1" FromRole="Personel" ToRole="Sefer" />
+        </EntityType>
+        <EntityType Name="Sefer">
+          <Key>
+            <PropertyRef Name="SeferID" />
+          </Key>
+          <Property Name="SeferID" Type="Int32" Nullable="false" />
+          <Property Name="KalkisSehri" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="VarisSehri" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="OtobusID" Type="Int32" />
+          <Property Name="SoforID" Type="Int32" />
+          <Property Name="MuavinID" Type="Int32" />
+          <Property Name="KalkisZamani" Type="DateTime" Precision="0" />
+          <Property Name="TahminiSure" Type="Int32" />
+          <NavigationProperty Name="Otobus" Relationship="Self.FK_Sefer_Otobus" FromRole="Sefer" ToRole="Otobus" />
+          <NavigationProperty Name="Personel" Relationship="Self.FK_Sefer_Personel" FromRole="Sefer" ToRole="Personel" />
+          <NavigationProperty Name="Personel1" Relationship="Self.FK_Sefer_Personel1" FromRole="Sefer" ToRole="Personel" />
+        </EntityType>
+        <EntityType Name="Sube">
+          <Key>
+            <PropertyRef Name="SubeID" />
+          </Key>
+          <Property Name="SubeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubeAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SehirAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_Admin_Sube" FromRole="Sube" ToRole="Admin" />
+        </EntityType>
+        <EntityType Name="SubeBilet">
+          <Key>
+            <PropertyRef Name="SeferID" />
+            <PropertyRef Name="KoltukNo" />
+          </Key>
+          <Property Name="SeferID" Type="Int32" Nullable="false" />
+          <Property Name="KoltukNo" Type="Int32" Nullable="false" />
+          <Property Name="PersonelID" Type="Int32" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_SubeBilet_Admin" FromRole="SubeBilet" ToRole="Admin" />
+          <NavigationProperty Name="Bilet" Relationship="Self.FK_SubeBilet_Bilet" FromRole="SubeBilet" ToRole="Bilet" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Admin_Personel">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="PersonelID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="PersonelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Admin_Sube">
+          <End Role="Sube" Type="Self.Sube" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sube">
+              <PropertyRef Name="SubeID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="SubeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubeBilet_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="SubeBilet" Type="Self.SubeBilet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="PersonelID" />
+            </Principal>
+            <Dependent Role="SubeBilet">
+              <PropertyRef Name="PersonelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bilet_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+          <End Role="Bilet" Type="Self.Bilet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="MusteriID" />
+            </Principal>
+            <Dependent Role="Bilet">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubeBilet_Bilet">
+          <End Role="Bilet" Type="Self.Bilet" Multiplicity="1" />
+          <End Role="SubeBilet" Type="Self.SubeBilet" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Bilet">
+              <PropertyRef Name="SeferID" />
+              <PropertyRef Name="KoltukNo" />
+            </Principal>
+            <Dependent Role="SubeBilet">
+              <PropertyRef Name="SeferID" />
+              <PropertyRef Name="KoltukNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sefer_Otobus">
+          <End Role="Otobus" Type="Self.Otobus" Multiplicity="0..1" />
+          <End Role="Sefer" Type="Self.Sefer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Otobus">
+              <PropertyRef Name="OtobusID" />
+            </Principal>
+            <Dependent Role="Sefer">
+              <PropertyRef Name="OtobusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sefer_Personel">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Sefer" Type="Self.Sefer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="PersonelID" />
+            </Principal>
+            <Dependent Role="Sefer">
+              <PropertyRef Name="SoforID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sefer_Personel1">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Sefer" Type="Self.Sefer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="PersonelID" />
+            </Principal>
+            <Dependent Role="Sefer">
+              <PropertyRef Name="MuavinID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ValeDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Bilet" EntityType="Self.Bilet" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+          <EntitySet Name="Otobus" EntityType="Self.Otobus" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" />
+          <EntitySet Name="Sefer" EntityType="Self.Sefer" />
+          <EntitySet Name="Sube" EntityType="Self.Sube" />
+          <EntitySet Name="SubeBilet" EntityType="Self.SubeBilet" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Admin_Personel" Association="Self.FK_Admin_Personel">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Admin_Sube" Association="Self.FK_Admin_Sube">
+            <End Role="Sube" EntitySet="Sube" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubeBilet_Admin" Association="Self.FK_SubeBilet_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="SubeBilet" EntitySet="SubeBilet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bilet_Musteri" Association="Self.FK_Bilet_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Bilet" EntitySet="Bilet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubeBilet_Bilet" Association="Self.FK_SubeBilet_Bilet">
+            <End Role="Bilet" EntitySet="Bilet" />
+            <End Role="SubeBilet" EntitySet="SubeBilet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sefer_Otobus" Association="Self.FK_Sefer_Otobus">
+            <End Role="Otobus" EntitySet="Otobus" />
+            <End Role="Sefer" EntitySet="Sefer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sefer_Personel" Association="Self.FK_Sefer_Personel">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Sefer" EntitySet="Sefer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sefer_Personel1" Association="Self.FK_Sefer_Personel1">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Sefer" EntitySet="Sefer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ValeDBModelStoreContainer" CdmEntityContainer="ValeDBEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="ValeDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+                <ScalarProperty Name="SubeID" ColumnName="SubeID" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bilet">
+            <EntityTypeMapping TypeName="ValeDBModel.Bilet">
+              <MappingFragment StoreEntitySet="Bilet">
+                <ScalarProperty Name="SeferID" ColumnName="SeferID" />
+                <ScalarProperty Name="KoltukNo" ColumnName="KoltukNo" />
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+                <ScalarProperty Name="MusteriAd" ColumnName="MusteriAd" />
+                <ScalarProperty Name="MusteriSoyad" ColumnName="MusteriSoyad" />
+                <ScalarProperty Name="MusteriCinsiyet" ColumnName="MusteriCinsiyet" />
+                <ScalarProperty Name="Ucret" ColumnName="Ucret" />
+                <ScalarProperty Name="IslemZamani" ColumnName="IslemZamani" />
+                <ScalarProperty Name="IslemTipi" ColumnName="IslemTipi" />
+                <ScalarProperty Name="SatisTipi" ColumnName="SatisTipi" />
+                <ScalarProperty Name="BiletTipi" ColumnName="BiletTipi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="ValeDBModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Otobus">
+            <EntityTypeMapping TypeName="ValeDBModel.Otobus">
+              <MappingFragment StoreEntitySet="Otobus">
+                <ScalarProperty Name="OtobusID" ColumnName="OtobusID" />
+                <ScalarProperty Name="Plaka" ColumnName="Plaka" />
+                <ScalarProperty Name="KoltukSayisi" ColumnName="KoltukSayisi" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personel">
+            <EntityTypeMapping TypeName="ValeDBModel.Personel">
+              <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+                <ScalarProperty Name="PersonelAd" ColumnName="PersonelAd" />
+                <ScalarProperty Name="PersonelSoyad" ColumnName="PersonelSoyad" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Maas" ColumnName="Maas" />
+                <ScalarProperty Name="PersonelTipi" ColumnName="PersonelTipi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sefer">
+            <EntityTypeMapping TypeName="ValeDBModel.Sefer">
+              <MappingFragment StoreEntitySet="Sefer">
+                <ScalarProperty Name="SeferID" ColumnName="SeferID" />
+                <ScalarProperty Name="KalkisSehri" ColumnName="KalkisSehri" />
+                <ScalarProperty Name="VarisSehri" ColumnName="VarisSehri" />
+                <ScalarProperty Name="OtobusID" ColumnName="OtobusID" />
+                <ScalarProperty Name="SoforID" ColumnName="SoforID" />
+                <ScalarProperty Name="MuavinID" ColumnName="MuavinID" />
+                <ScalarProperty Name="KalkisZamani" ColumnName="KalkisZamani" />
+                <ScalarProperty Name="TahminiSure" ColumnName="TahminiSure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sube">
+            <EntityTypeMapping TypeName="ValeDBModel.Sube">
+              <MappingFragment StoreEntitySet="Sube">
+                <ScalarProperty Name="SubeID" ColumnName="SubeID" />
+                <ScalarProperty Name="SubeAdi" ColumnName="SubeAdi" />
+                <ScalarProperty Name="SehirAdi" ColumnName="SehirAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubeBilet">
+            <EntityTypeMapping TypeName="ValeDBModel.SubeBilet">
+              <MappingFragment StoreEntitySet="SubeBilet">
+                <ScalarProperty Name="SeferID" ColumnName="SeferID" />
+                <ScalarProperty Name="KoltukNo" ColumnName="KoltukNo" />
+                <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ValeDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

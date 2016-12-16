@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/Layout_Style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <title>Vale</title>
+</head>
+<body>
+<header style="padding-bottom:20px">
+    <nav id="navtop">
+        <div class="container-fluid">
+            <!--header navbar top left -->
+            <ul class="nav navbar-nav" id="nav-left">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user" aria-hidden="true"></i>Kaan Taş
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-check-square-o" aria-hidden="true"></i>Çıkış
+                    </a>
+                </li>
+            </ul>
+               
+        </div>
+    </nav>
+    <!--header navbar LOGO -->
+    <div class="text-center" id="logo">
+        <a href="#"><img src="~/img/logo.png" alt="logo" /></a>
+    </div>
+    <!-- TOOGLE MAIN NAVIGATION -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <!--  MAIN NAVIGATION -->
+    <div class="collapse navbar-collapse" id="main-navigation">
+        <div class="container">
+            <ul class="nav nav-justified nav-pills">
+                <li id="Index"><a href="~/Home/Index">Ana Sayfa</a></li>
+                <li id="UyeGirisi"><a href="~/Home/UyeGirisi">Üye Girişi</a></li>
+                <li id="UyeOl"><a href="~/Home/UyeOl">Üye Ol</a></li>
+                <li id="YoneticiGirisi"><a href="~/Home/YoneticiGirisi">Yönetici Girişi</a></li>
+                <li id="Iletisim"><a href="~/Home/Iletisim">İletişim</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--header navbar END -->
+</header>
+
+<!-- ***************************************CONTAINER********************************** -->
+<div style="padding-top:20px; padding-bottom:20px; width: 1400px; height: 900px; background-color: #337ab7;">
+    @RenderBody()
+</div>
+
+<footer>
+    <div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2  col-md-4 col-sm-4 col-xs-6">
+                    <h3> Site İşlemleri </h3>
+                    <ul>
+                        <li> <a href="Home/Index"> Ana Sayfa </a> </li>
+                        <li> <a href="Home/UyeGirisi"> Üye Girişi </a> </li>
+                        <li> <a href="Home/UyeOl"> Üye Ol </a> </li>
+                        <li> <a href="Home/YoneticiGirisi"> Yönetici Girişi </a> </li>
+                        <li> <a href="Home/Iletisim"> İletişim </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-4 col-sm-4 col-xs-6">
+                    <h3> Üye İşlemleri </h3>
+                    <ul>
+                        <li> <a href="#"> Üye Girişi </a> </li>
+                        <li> <a href="#"> Üye Ol </a> </li>
+                        <li> <a href="#"> Yönetici Girişi </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-4 col-sm-4 col-xs-6"></div>
+                <div class="col-lg-2  col-md-4 col-sm-4 col-xs-6"></div>
+                <div class="col-lg-3  col-md-5 col-sm-6 col-xs-12 ">
+                    <h3> Bize Ulaşın </h3>
+                    <ul>
+                        <li>
+                            <h4><strong>222 26 26</strong></h4>
+                        </li>
+                    </ul>
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.row-->
+        </div>
+        <!--/.container-->
+    </div>
+    <!--/.footer-->
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="pull-left"> Copyright © Vale 2016. Her hakkı saklıdır. </p>
+            <div class="pull-right">
+                <ul class="nav nav-pills payments">
+                    <li><i class="fa fa-cc-visa"></i></li>
+                    <li><i class="fa fa-cc-mastercard"></i></li>
+                    <li><i class="fa fa-cc-amex"></i></li>
+                    <li><i class="fa fa-cc-paypal"></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/.footer-bottom-->
+</footer>
+</body>
+
+<script src="~/Scripts/HeaderActive.js"></script>
+</html>
