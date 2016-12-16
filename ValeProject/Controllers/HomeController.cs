@@ -26,6 +26,25 @@ namespace ValeProject.Controllers
         {
             return View();
         }
+        //Üye Ol Ekranındaki Form Post Edilince
+        [HttpPost]
+        public ActionResult UyeOl(FormCollection form)
+        {
+            ValeDBEntities db = new ValeDBEntities();
+            Musteri model = new Musteri();
+            model.Ad = form["ad"];
+            model.Soyad = form["soyad"];
+            model.Email = form["email"];
+            model.Cinsiyet = form["cinsiyet"];
+           // model.DogumTarihi = form["dogumTarihi"];
+            model.Adres = form["adres"];
+            model.Tel = form["telefon"];
+            model.Sifre = form["sifre"];
+
+            db.Musteri.Add(model);
+            db.SaveChanges();
+            return View();
+        }
         //Yönetici Girişi
         public ActionResult YoneticiGirisi()
         {

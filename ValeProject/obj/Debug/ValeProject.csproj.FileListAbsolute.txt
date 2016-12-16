@@ -19,3 +19,4 @@ C:\Users\Casper\documents\visual studio 2013\Projects\ValeProject\ValeProject\bi
 C:\Users\Casper\documents\visual studio 2013\Projects\ValeProject\ValeProject\bin\EntityFramework.SqlServer.dll
 C:\Users\Casper\documents\visual studio 2013\Projects\ValeProject\ValeProject\bin\EntityFramework.xml
 C:\Users\Casper\documents\visual studio 2013\Projects\ValeProject\ValeProject\bin\EntityFramework.SqlServer.xml
+C:\Users\Casper\documents\visual studio 2013\Projects\ValeProject\ValeProject\obj\Debug\ValeProject.csprojResolveAssemblyReference.cache
