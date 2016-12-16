@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ValeProject
+namespace ValeProject.Models
 {
     using System;
     using System.Data.Entity;

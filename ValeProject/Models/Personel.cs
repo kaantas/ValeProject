@@ -7,30 +7,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ValeProject
+namespace ValeProject.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Musteri
+    public partial class Personel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Musteri()
+        public Personel()
         {
-            this.Bilet = new HashSet<Bilet>();
+            this.Sefer = new HashSet<Sefer>();
+            this.Sefer1 = new HashSet<Sefer>();
         }
     
-        public int MusteriID { get; set; }
-        public string Ad { get; set; }
-        public string Soyad { get; set; }
+        public int PersonelID { get; set; }
+        public string PersonelAd { get; set; }
+        public string PersonelSoyad { get; set; }
+        public string Cinsiyet { get; set; }
         public string Email { get; set; }
         public string Tel { get; set; }
-        public string Cinsiyet { get; set; }
-        public Nullable<System.DateTime> DogumTarihi { get; set; }
         public string Adres { get; set; }
-        public string Sifre { get; set; }
+        public Nullable<int> Maas { get; set; }
+        public string PersonelTipi { get; set; }
     
+        public virtual Admin Admin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bilet> Bilet { get; set; }
+        public virtual ICollection<Sefer> Sefer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sefer> Sefer1 { get; set; }
     }
 }

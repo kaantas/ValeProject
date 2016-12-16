@@ -7,17 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ValeProject
+namespace ValeProject.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class seferleriListele_Result
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public Nullable<System.TimeSpan> KalkisSaati { get; set; }
+        public string OtobusMarka { get; set; }
+        public Nullable<double> Fiyat { get; set; }
     }
 }

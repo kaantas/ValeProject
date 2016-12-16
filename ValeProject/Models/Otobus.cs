@@ -7,24 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ValeProject
+namespace ValeProject.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Sube
+    public partial class Otobus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sube()
+        public Otobus()
         {
-            this.Admin = new HashSet<Admin>();
+            this.Sefer = new HashSet<Sefer>();
         }
     
-        public int SubeID { get; set; }
-        public string SubeAdi { get; set; }
-        public string SehirAdi { get; set; }
+        public int OtobusID { get; set; }
+        public string Plaka { get; set; }
+        public Nullable<int> KoltukSayisi { get; set; }
+        public string Marka { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Admin> Admin { get; set; }
+        public virtual ICollection<Sefer> Sefer { get; set; }
     }
 }
