@@ -72,5 +72,10 @@ namespace ValeProject.Controllers
         {
             return View();
         }
+
+        public ActionResult BiletAl()
+        {
+            return View();
+        }
     }
 }

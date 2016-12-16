@@ -289,6 +289,7 @@
     <Content Include="Views\Home\UyeOl.cshtml" />
     <Content Include="Views\Home\YoneticiGirisi.cshtml" />
     <Content Include="Views\Home\Iletisim.cshtml" />
+    <Content Include="Views\Home\BiletAl.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
