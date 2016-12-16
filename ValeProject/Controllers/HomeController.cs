@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,6 +20,22 @@ namespace ValeProject.Controllers
         //Üye Girişi
         public ActionResult UyeGirisi()
         {
+            return View();
+        }
+        //Üye Girişi Sayfasındaki Form Post Edildiğinde (Authentication)
+        [HttpPost]
+        public ActionResult UyeGirisi(FormCollection form)
+        {
+            string email = form["email"];
+            string sifre = form["sifre"];
+            var context = new ValeDBEntities();
+            var query = context.Musteri.ToList();
+            var result = query.Where(m => m.Email == email && m.Sifre == sifre).ToList();
+            if (result.Count > 0) 
+                ViewBag.mesaj = result[0].Ad;
+            else 
+                ViewBag.mesaj = "Kullanıcı Bulunamadı !";
+            
             return View();
         }
         //Üye Ol

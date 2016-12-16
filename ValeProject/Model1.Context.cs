@@ -12,6 +12,8 @@ namespace ValeProject
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ValeDBEntities : DbContext
     {
@@ -34,5 +36,58 @@ namespace ValeProject
         public virtual DbSet<Sube> Sube { get; set; }
         public virtual DbSet<SubeBilet> SubeBilet { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+    
+        public virtual ObjectResult<biletGetir_Result> biletGetir(string email, string sifre)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var sifreParameter = sifre != null ?
+                new ObjectParameter("Sifre", sifre) :
+                new ObjectParameter("Sifre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<biletGetir_Result>("biletGetir", emailParameter, sifreParameter);
+        }
+    
+        [DbFunction("ValeDBEntities", "doluKoltuklariGetir")]
+        public virtual IQueryable<doluKoltuklariGetir_Result> doluKoltuklariGetir(string kalkisSehri, string varisSehri, Nullable<System.DateTime> kalkisTarihi, Nullable<System.TimeSpan> kalkisSaati)
+        {
+            var kalkisSehriParameter = kalkisSehri != null ?
+                new ObjectParameter("KalkisSehri", kalkisSehri) :
+                new ObjectParameter("KalkisSehri", typeof(string));
+    
+            var varisSehriParameter = varisSehri != null ?
+                new ObjectParameter("VarisSehri", varisSehri) :
+                new ObjectParameter("VarisSehri", typeof(string));
+    
+            var kalkisTarihiParameter = kalkisTarihi.HasValue ?
+                new ObjectParameter("KalkisTarihi", kalkisTarihi) :
+                new ObjectParameter("KalkisTarihi", typeof(System.DateTime));
+    
+            var kalkisSaatiParameter = kalkisSaati.HasValue ?
+                new ObjectParameter("KalkisSaati", kalkisSaati) :
+                new ObjectParameter("KalkisSaati", typeof(System.TimeSpan));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<doluKoltuklariGetir_Result>("[ValeDBEntities].[doluKoltuklariGetir](@KalkisSehri, @VarisSehri, @KalkisTarihi, @KalkisSaati)", kalkisSehriParameter, varisSehriParameter, kalkisTarihiParameter, kalkisSaatiParameter);
+        }
+    
+        [DbFunction("ValeDBEntities", "seferleriListele")]
+        public virtual IQueryable<seferleriListele_Result> seferleriListele(string kalkisSehri, string varisSehri, Nullable<System.DateTime> kalkisTarihi)
+        {
+            var kalkisSehriParameter = kalkisSehri != null ?
+                new ObjectParameter("KalkisSehri", kalkisSehri) :
+                new ObjectParameter("KalkisSehri", typeof(string));
+    
+            var varisSehriParameter = varisSehri != null ?
+                new ObjectParameter("VarisSehri", varisSehri) :
+                new ObjectParameter("VarisSehri", typeof(string));
+    
+            var kalkisTarihiParameter = kalkisTarihi.HasValue ?
+                new ObjectParameter("KalkisTarihi", kalkisTarihi) :
+                new ObjectParameter("KalkisTarihi", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<seferleriListele_Result>("[ValeDBEntities].[seferleriListele](@KalkisSehri, @VarisSehri, @KalkisTarihi)", kalkisSehriParameter, varisSehriParameter, kalkisTarihiParameter);
+        }
     }
 }

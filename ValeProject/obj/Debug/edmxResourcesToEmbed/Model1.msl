@@ -22,7 +22,6 @@
           <ScalarProperty Name="Ucret" ColumnName="Ucret" />
           <ScalarProperty Name="IslemZamani" ColumnName="IslemZamani" />
           <ScalarProperty Name="IslemTipi" ColumnName="IslemTipi" />
-          <ScalarProperty Name="SatisTipi" ColumnName="SatisTipi" />
           <ScalarProperty Name="BiletTipi" ColumnName="BiletTipi" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -70,13 +69,15 @@
     <EntitySetMapping Name="Sefer">
       <EntityTypeMapping TypeName="ValeDBModel.Sefer">
         <MappingFragment StoreEntitySet="Sefer">
+          <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+          <ScalarProperty Name="KalkisSaati" ColumnName="KalkisSaati" />
+          <ScalarProperty Name="KalkisTarihi" ColumnName="KalkisTarihi" />
           <ScalarProperty Name="SeferID" ColumnName="SeferID" />
           <ScalarProperty Name="KalkisSehri" ColumnName="KalkisSehri" />
           <ScalarProperty Name="VarisSehri" ColumnName="VarisSehri" />
           <ScalarProperty Name="OtobusID" ColumnName="OtobusID" />
           <ScalarProperty Name="SoforID" ColumnName="SoforID" />
           <ScalarProperty Name="MuavinID" ColumnName="MuavinID" />
-          <ScalarProperty Name="KalkisZamani" ColumnName="KalkisZamani" />
           <ScalarProperty Name="TahminiSure" ColumnName="TahminiSure" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -110,5 +111,39 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="biletGetir" FunctionName="ValeDBModel.Store.biletGetir">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ValeDBModel.biletGetir_Result">
+          <ScalarProperty Name="MusteriAd" ColumnName="MusteriAd" />
+          <ScalarProperty Name="MusteriSoyad" ColumnName="MusteriSoyad" />
+          <ScalarProperty Name="KoltukNo" ColumnName="KoltukNo" />
+          <ScalarProperty Name="IslemTipi" ColumnName="IslemTipi" />
+          <ScalarProperty Name="BiletTipi" ColumnName="BiletTipi" />
+          <ScalarProperty Name="IslemZamani" ColumnName="IslemZamani" />
+          <ScalarProperty Name="KalkisSehri" ColumnName="KalkisSehri" />
+          <ScalarProperty Name="VarisSehri" ColumnName="VarisSehri" />
+          <ScalarProperty Name="KalkisTarihi" ColumnName="KalkisTarihi" />
+          <ScalarProperty Name="KalkisSaati" ColumnName="KalkisSaati" />
+          <ScalarProperty Name="Ucret" ColumnName="Ucret" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="doluKoltuklariGetir" FunctionName="ValeDBModel.Store.doluKoltuklariGetir">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ValeDBModel.doluKoltuklariGetir_Result">
+          <ScalarProperty Name="KoltukNo" ColumnName="KoltukNo" />
+          <ScalarProperty Name="MusteriCinsiyet" ColumnName="MusteriCinsiyet" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="seferleriListele" FunctionName="ValeDBModel.Store.seferleriListele">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ValeDBModel.seferleriListele_Result">
+          <ScalarProperty Name="KalkisSaati" ColumnName="KalkisSaati" />
+          <ScalarProperty Name="OtobusMarka" ColumnName="OtobusMarka" />
+          <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

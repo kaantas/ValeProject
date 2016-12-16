@@ -14,17 +14,27 @@ namespace ValeProject
     
     public partial class Sefer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Sefer()
+        {
+            this.Bilet = new HashSet<Bilet>();
+        }
+    
         public int SeferID { get; set; }
         public string KalkisSehri { get; set; }
         public string VarisSehri { get; set; }
         public Nullable<int> OtobusID { get; set; }
         public Nullable<int> SoforID { get; set; }
         public Nullable<int> MuavinID { get; set; }
-        public Nullable<System.DateTime> KalkisZamani { get; set; }
         public Nullable<int> TahminiSure { get; set; }
+        public Nullable<System.DateTime> KalkisTarihi { get; set; }
+        public Nullable<System.TimeSpan> KalkisSaati { get; set; }
+        public Nullable<decimal> Fiyat { get; set; }
     
         public virtual Otobus Otobus { get; set; }
         public virtual Personel Personel { get; set; }
         public virtual Personel Personel1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bilet> Bilet { get; set; }
     }
 }

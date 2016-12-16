@@ -22,6 +22,7 @@
         <AssociationConnector Association="ValeDBModel.FK_Sefer_Otobus" ManuallyRouted="false" />
         <AssociationConnector Association="ValeDBModel.FK_Sefer_Personel" ManuallyRouted="false" />
         <AssociationConnector Association="ValeDBModel.FK_Sefer_Personel1" ManuallyRouted="false" />
+        <AssociationConnector Association="ValeDBModel.FK_Bilet_Sefer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
