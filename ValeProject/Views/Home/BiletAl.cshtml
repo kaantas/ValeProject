@@ -74,56 +74,58 @@
                             </div>
                         </fieldset>
                     </form>
-                    <table class="table">
-                        @if (Model != null)
-                        {
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.KalkisSaati)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Otobus.Marka)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Fiyat)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.TahminiSure)
-                                </th>
-                                <th></th>
-                            </tr>
-
-                            foreach (var item in Model)
+                    <div class="col-md-9">
+                        <table class="table">
+                            @if (Model != null)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.KalkisSaati)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Otobus.Marka)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Fiyat)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TahminiSure) Saat
-                                </td>
-                                <td>
-                                    <div class="col-md-6"></div>
+                                <tr style="background: #5cb85c; color: white; font-weight: bold">
+                                    <th>
+                                        Kalkış Saati
+                                    </th>
+                                    <th>
+                                        Otobüs @Html.DisplayNameFor(model => model.Otobus.Marka)sı
+                                    </th>
+                                    <th>
+                                        Bilet @Html.DisplayNameFor(model => model.Fiyat)ı
+                                    </th>
+                                    <th>
+                                        Tahmini Süre
+                                    </th>
+                                    <th></th>
+                                </tr>
 
-                                    <div class="col-md-6">
-                                        <input class="btn btn-lg btn-primary btn-block" type="submit" value="İncele" style="color: white">
-                                    </div>
-                                </td>
-                            </tr>
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.KalkisSaati)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Otobus.Marka)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Fiyat)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TahminiSure) Saat
+                                        </td>
+                                        <td>
+                                            <div class="col-md-12">
+                                                <input class="btn btn-lg btn-primary btn-block" type="submit" value="İncele" style="color: white">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
                             }
-                        }
-                        else
-                        {
-                            <h2><center>@ViewBag.mesaj</center></h2>
-                        }
+                            else
+                            {
+                                <h2><center>@ViewBag.mesaj</center></h2>
+                            }
 
-                    </table>
+                        </table>
+                    </div>
+                    <div class="col-md-3" style="border:1px gray solid; height: 600px;">
+                    </div>
                 </div>
             </div>
         </div>
