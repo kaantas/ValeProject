@@ -91,28 +91,10 @@ namespace ValeProject.Controllers
             string ay = tarih.Substring(0, 2);
             string gun = tarih.Substring(3, 2);
             string sqlTarih = gun + "/" + ay + "/" + yil;
-            /*
-            string format;
-            DateTime r;
-            // Parse a date that includes seconds and milliseconds
-            // by using the French (France) and invariant cultures.
-            format = "yyyy-MM-dd";
-            CultureInfo provider = CultureInfo.CurrentCulture;
-            try
-            {
-                r = DateTime.ParseExact(tarih, format, provider);
-                Console.WriteLine("{0} converts to {1}.", tarih, r.ToString());
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("{0} is not in the correct format.", sqlTarih);
-            }
-            DateTime dt = Convert.ToDateTime(sqlTarih);
-          //  DateTime tarih = Convert.ToDateTime(form["tarih"]);
-             * */
+            
             var context = new ValeDBEntities();
             var query = context.Sefer.ToList();
-            var result = query.Where(m => m.KalkisSehri == kalkisSehri && m.VarisSehri == varisSehri && m.KalkisTarihi == sqlTarih).ToList();
+            var result = query.Where(m => m.KalkisSehri == kalkisSehri && m.VarisSehri == varisSehri && m.KalkisTarihi == sqlTarih).OrderBy(m => m.KalkisSaati).ToList();
             if (result.Count > 0)
             {
                 ls = result;
