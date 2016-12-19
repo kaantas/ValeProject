@@ -1,6 +1,7 @@
-﻿
+﻿@model IEnumerable<ValeProject.Models.Sefer>
+
 @{
-    ViewBag.Title = "BiletAl";
+    
 }
 <link href="~/css/UyeOl_Style.css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +22,6 @@
         $('#datetimepicker1').datetimepicker();
     });
 </script>
-<h2>BiletAl</h2>
-
 <div class="container" style="padding-top: 55px;">
     <div class="row">
         <div class="col-md-12">
@@ -37,7 +36,7 @@
                                 <div class="form-group">
                                     <label for="email" class="cols-sm-2 control-label">Kalkış</label>
                                     <div class="cols-sm-10">
-                                        <select id="selectbasic" name="cinsiyet" class="form-control input-md">
+                                        <select id="selectbasic" name="kalkisSehri" class="form-control input-md">
                                             <option>İstanbul</option>
                                             <option>Eskişehir</option>
                                         </select>
@@ -48,7 +47,7 @@
                                 <div class="form-group">
                                     <label for="email" class="cols-sm-2 control-label">Varış</label>
                                     <div class="cols-sm-10">
-                                        <select id="selectbasic" name="cinsiyet" class="form-control input-md">
+                                        <select id="selectbasic" name="VarisSehri" class="form-control input-md">
                                             <option>Eskişehir</option>
                                             <option>Bursa</option>
                                         </select>
@@ -75,6 +74,56 @@
                             </div>
                         </fieldset>
                     </form>
+                    <table class="table">
+                        @if (Model != null)
+                        {
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.KalkisSaati)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Otobus.Marka)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Fiyat)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TahminiSure)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KalkisSaati)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Otobus.Marka)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fiyat)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TahminiSure) Saat
+                                </td>
+                                <td>
+                                    <div class="col-md-6"></div>
+
+                                    <div class="col-md-6">
+                                        <input class="btn btn-lg btn-primary btn-block" type="submit" value="İncele" style="color: white">
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                        }
+                        else
+                        {
+                            <h2><center>@ViewBag.mesaj</center></h2>
+                        }
+
+                    </table>
                 </div>
             </div>
         </div>
