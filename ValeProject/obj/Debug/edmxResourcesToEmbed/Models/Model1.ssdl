@@ -20,7 +20,7 @@
     <Property Name="MusteriSoyad" Type="nvarchar" MaxLength="15" />
     <Property Name="MusteriCinsiyet" Type="nvarchar" MaxLength="10" />
     <Property Name="Ucret" Type="float" />
-    <Property Name="IslemZamani" Type="date" />
+    <Property Name="IslemZamani" Type="nvarchar" MaxLength="10" />
     <Property Name="IslemTipi" Type="nvarchar" MaxLength="15" />
     <Property Name="BiletTipi" Type="nvarchar" MaxLength="15" />
   </EntityType>
@@ -71,7 +71,7 @@
     <Property Name="OtobusID" Type="int" />
     <Property Name="SoforID" Type="int" />
     <Property Name="MuavinID" Type="int" />
-    <Property Name="KalkisTarihi" Type="date" />
+    <Property Name="KalkisTarihi" Type="nvarchar" MaxLength="10" />
     <Property Name="KalkisSaati" Type="time" Precision="4" />
     <Property Name="TahminiSure" Type="int" />
     <Property Name="Fiyat" Type="money" />

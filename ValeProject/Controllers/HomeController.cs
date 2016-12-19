@@ -86,13 +86,11 @@ namespace ValeProject.Controllers
             string kalkisSehri = form["kalkisSehri"];
             string varisSehri = form["varisSehri"];
 
-            /*
             string tarih = form["tarih"]; // mm/dd/yyyy
             string yil = tarih.Substring(6,4);
             string ay = tarih.Substring(0, 2);
             string gun = tarih.Substring(3, 2);
-            string sqlTarih = yil + "-" + ay + "-" + gun;
-            */
+            string sqlTarih = gun + "/" + ay + "/" + yil;
             /*
             string format;
             DateTime r;
@@ -114,7 +112,7 @@ namespace ValeProject.Controllers
              * */
             var context = new ValeDBEntities();
             var query = context.Sefer.ToList();
-            var result = query.Where(m => m.KalkisSehri == kalkisSehri && m.VarisSehri == varisSehri).ToList();
+            var result = query.Where(m => m.KalkisSehri == kalkisSehri && m.VarisSehri == varisSehri && m.KalkisTarihi == sqlTarih).ToList();
             if (result.Count > 0)
             {
                 ls = result;

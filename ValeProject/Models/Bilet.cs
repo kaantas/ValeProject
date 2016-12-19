@@ -21,7 +21,7 @@ namespace ValeProject.Models
         public string MusteriSoyad { get; set; }
         public string MusteriCinsiyet { get; set; }
         public Nullable<double> Ucret { get; set; }
-        public Nullable<System.DateTime> IslemZamani { get; set; }
+        public string IslemZamani { get; set; }
         public string IslemTipi { get; set; }
         public string BiletTipi { get; set; }
     
