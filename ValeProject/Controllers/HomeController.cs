@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Core.Common.CommandTrees;
 using System.Globalization;
 using System.Linq;
@@ -77,6 +78,40 @@ namespace ValeProject.Controllers
         public ActionResult BiletAl()
         {
             return View();   
+        }
+
+        public JsonResult GetBilet()
+        {
+            /*
+            List<Bilet> lsBilet = null;
+            var query = db.Bilet.ToList();
+            var result = query.Where(b => b.SeferID == 1).ToList();
+            if (result.Count > 0)
+            {
+                lsBilet = result;
+            }
+            return Json(lsBilet,JsonRequestBehavior.AllowGet);*/
+            /*
+            var query =
+                db.Bilet.Join(db.Sefer, bilet => bilet.SeferID, sefer => sefer.SeferID, (bilet, sefer) => bilet)
+                    .Where(b => b.SeferID == 1)
+                    .ToList();
+            List<Bilet> lsBilet = query;
+            */
+
+
+
+            List<Bilet> lsBilet = db.Bilet.ToList();
+           var json = new
+            {
+                MusteriAd = "Kaan",
+                MusteriSoyad = "Taş",
+                MusteriCinsiyet = "Erkek",
+                KoltukNo = 1
+            };
+       //     var json = Json(lsBilet, JsonRequestBehavior.AllowGet);
+            return Json(json, JsonRequestBehavior.AllowGet);
+            
         }
         [HttpPost]
         public ActionResult BiletAl(FormCollection form)

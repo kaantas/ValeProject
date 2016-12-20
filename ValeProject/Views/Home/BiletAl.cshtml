@@ -22,6 +22,7 @@
         $('#datetimepicker1').datetimepicker();
     });
 </script>
+
 <div class="container" style="padding-top: 55px;">
     <div class="row">
         <div class="col-md-12">
@@ -83,10 +84,10 @@
                                         Kalkış Saati
                                     </th>
                                     <th>
-                                        Otobüs @Html.DisplayNameFor(model => model.Otobus.Marka)sı
+                                        Otobüs Markası
                                     </th>
                                     <th>
-                                        Bilet @Html.DisplayNameFor(model => model.Fiyat)ı
+                                        Bilet Fiyatı
                                     </th>
                                     <th>
                                         Tahmini Süre
@@ -126,11 +127,36 @@
                     </div>
                     <div class="col-md-3" style="border:1px gray solid; height: 600px;">
                     </div>
+                    
+                    
+
+                    
+                    <table ng-app="myApp" ng-controller="biletController">
+                        <tr>
+                            <th>Ad</th>
+                            <th>Soyad</th>
+                            <th>Cinsiyet</th>
+                            <th>Koltuk No</th>
+                        </tr>
+                        <tr ng-repeat="bilet in biletler">
+                            <td>{{bilet.MusteriAd}}</td>
+                            <td>{{bilet.MusteriSoyad}}</td>
+                            <td>{{bilet.MusteriCinsiyet}}</td>
+                            <td>{{bilet.KoltukNo}}</td>
+                        </tr>
+                    </table>
+        
+                    
+                    
+                    
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/myApp.js"></script>
 <script type="text/javascript">
     $(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd hh:ii' });
 </script>
