@@ -219,7 +219,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ValeDBEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="ValeDBEntities" annotation:LazyLoadingEnabled="false">
     <EntitySet Name="Admin" EntityType="Self.Admin" />
     <EntitySet Name="Bilet" EntityType="Self.Bilet" />
     <EntitySet Name="Musteri" EntityType="Self.Musteri" />

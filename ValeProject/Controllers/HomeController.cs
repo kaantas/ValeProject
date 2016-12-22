@@ -90,27 +90,15 @@ namespace ValeProject.Controllers
             {
                 lsBilet = result;
             }
-            return Json(lsBilet,JsonRequestBehavior.AllowGet);*/
-            /*
+            return Json(lsBilet,JsonRequestBehavior.AllowGet);
+            */
+              
             var query =
                 db.Bilet.Join(db.Sefer, bilet => bilet.SeferID, sefer => sefer.SeferID, (bilet, sefer) => bilet)
                     .Where(b => b.SeferID == 1)
                     .ToList();
             List<Bilet> lsBilet = query;
-            */
-
-
-
-            List<Bilet> lsBilet = db.Bilet.ToList();
-           var json = new
-            {
-                MusteriAd = "Kaan",
-                MusteriSoyad = "Taş",
-                MusteriCinsiyet = "Erkek",
-                KoltukNo = 1
-            };
-       //     var json = Json(lsBilet, JsonRequestBehavior.AllowGet);
-            return Json(json, JsonRequestBehavior.AllowGet);
+            return Json(lsBilet, JsonRequestBehavior.AllowGet);
             
         }
         [HttpPost]

@@ -20,6 +20,7 @@ namespace ValeProject.Models
         public ValeDBEntities()
             : base("name=ValeDBEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
