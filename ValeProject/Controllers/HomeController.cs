@@ -99,8 +99,8 @@ namespace ValeProject.Controllers
                     .ToList();
             List<Bilet> lsBilet = query;
             return Json(lsBilet, JsonRequestBehavior.AllowGet);
-            
         }
+
         [HttpPost]
         public ActionResult BiletAl(FormCollection form)
         {
@@ -108,16 +108,25 @@ namespace ValeProject.Controllers
             List<Sefer> ls=null;
             string kalkisSehri = form["kalkisSehri"];
             string varisSehri = form["varisSehri"];
-
+            string yil;
+            string ay; 
+            string gun;
             string tarih = form["tarih"]; // mm/dd/yyyy
-            string yil = tarih.Substring(6,4);
-            string ay = tarih.Substring(0, 2);
-            string gun = tarih.Substring(3, 2);
+            if (tarih == "")
+            {
+                tarih = DateTime.Now.ToString("d"); //mm/dd/yyyy
+                yil = tarih.Substring(6, 4);
+                ay = tarih.Substring(0, 2);
+                gun = tarih.Substring(3, 2);
+            }
+            yil = tarih.Substring(6,4);
+            ay = tarih.Substring(0, 2);
+            gun = tarih.Substring(3, 2);
             string sqlTarih = gun + "/" + ay + "/" + yil;
             
             var context = new ValeDBEntities();
-            var query = context.Sefer.ToList();
-            var result = query.Where(m => m.KalkisSehri == kalkisSehri && m.VarisSehri == varisSehri && m.KalkisTarihi == sqlTarih).OrderBy(m => m.KalkisSaati).ToList();
+            var result = context.Sefer.Include("Otobus")
+                .Where(m => m.KalkisSehri == kalkisSehri && m.VarisSehri == varisSehri && m.KalkisTarihi == sqlTarih).OrderBy(m => m.KalkisSaati).ToList();
             if (result.Count > 0)
             {
                 ls = result;

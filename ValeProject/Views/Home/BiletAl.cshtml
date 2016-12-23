@@ -30,8 +30,8 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Bilet Satın Al</h3>
                 </div>
-                <div class="panel-body">
-                    <form accept-charset="UTF-8" role="form" action="#" method="post">
+                <div class="panel-body" ng-app="myApp" ng-controller="biletController">
+                    <form accept-charset="UTF-8" role="form" action="/Home/BiletAl" method="post">
                         <fieldset>
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -112,7 +112,7 @@
                                         </td>
                                         <td>
                                             <div class="col-md-12">
-                                                <input class="btn btn-lg btn-primary btn-block" type="submit" value="İncele" style="color: white">
+                                                <input class="btn btn-lg btn-primary btn-block" type="submit" value="İncele" ng-click="go()" style="color: white">
                                             </div>
                                         </td>
                                     </tr>
@@ -120,35 +120,34 @@
                             }
                             else
                             {
-                                <h2><center>@ViewBag.mesaj</center></h2>
+                                <h2>
+                                    <center>@ViewBag.mesaj</center>
+                                </h2>
                             }
-
                         </table>
+
+
+
                     </div>
                     <div class="col-md-3" style="border:1px gray solid; height: 600px;">
                     </div>
-                    
-                    
 
-                    
-                    <table ng-app="myApp" ng-controller="biletController">
-                        <tr>
-                            <th>Ad</th>
-                            <th>Soyad</th>
-                            <th>Cinsiyet</th>
-                            <th>Koltuk No</th>
-                        </tr>
-                        <tr ng-repeat="bilet in biletler">
-                            <td>{{bilet.MusteriAd}}</td>
-                            <td>{{bilet.MusteriSoyad}}</td>
-                            <td>{{bilet.MusteriCinsiyet}}</td>
-                            <td>{{bilet.KoltukNo}}</td>
-                        </tr>
-                    </table>
-        
-                    
-                    
-                    
+                    <div ng-show="v">
+                        <table>
+                            <tr>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Cinsiyet</th>
+                                <th>Koltuk No</th>
+                            </tr>
+                            <tr ng-repeat="bilet in biletler">
+                                <td>{{bilet.MusteriAd}}</td>
+                                <td>{{bilet.MusteriSoyad}}</td>
+                                <td>{{bilet.MusteriCinsiyet}}</td>
+                                <td>{{bilet.KoltukNo}}</td>
+                            </tr>
+                        </table>
+                    </div>
 
                 </div>
             </div>
