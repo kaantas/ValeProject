@@ -61,7 +61,7 @@
                                         <div class="form-group">
                                             <label for="email" class="cols-sm-2 control-label">Tarih</label>
                                             <div class='input-group date' id='datetimepicker1'>
-                                                <input type='text' name="tarih" class="form-control" />
+                                                <input type='text' id="datetimepicker1_text" name="tarih" class="form-control" />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
@@ -112,8 +112,9 @@
                                         </td>
                                         <td>
                                             <div class="col-md-12">
-                                                <input class="btn btn-lg btn-primary btn-block" type="submit" value="İncele" ng-click="go()" style="color: white">
+                                                <input class="btn btn-lg btn-primary btn-block" type="submit" value="İncele" ng-click="go(@Html.DisplayFor(modelItem => item.SeferID))" style="color: white">
                                             </div>
+                                            <input type="hidden" name="datepickerText" id="datepickerText" value=@Html.DisplayFor(modelItem => item.SeferID)>
                                         </td>
                                     </tr>
                                 }

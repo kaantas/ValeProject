@@ -19,3 +19,4 @@ C:\Users\Casper\documents\visual studio 2013\Projects\ValeProject\ValeProject\bi
 C:\Users\Casper\documents\visual studio 2013\Projects\ValeProject\ValeProject\bin\System.Web.Mvc.xml
 C:\Users\Casper\documents\visual studio 2013\Projects\ValeProject\ValeProject\obj\Debug\ValeProject.dll
 C:\Users\Casper\documents\visual studio 2013\Projects\ValeProject\ValeProject\obj\Debug\ValeProject.pdb
+C:\Users\Casper\documents\visual studio 2013\Projects\ValeProject\ValeProject\obj\Debug\ValeProject.csprojResolveAssemblyReference.cache

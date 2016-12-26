@@ -79,24 +79,12 @@ namespace ValeProject.Controllers
         {
             return View();   
         }
-
-        public JsonResult GetBilet()
+      //  [Route("/Home/GetBilet/{seferId}")]
+        public JsonResult GetBilet(int id)
         {
-            /*
-            List<Bilet> lsBilet = null;
-            var query = db.Bilet.ToList();
-            var result = query.Where(b => b.SeferID == 1).ToList();
-            if (result.Count > 0)
-            {
-                lsBilet = result;
-            }
-            return Json(lsBilet,JsonRequestBehavior.AllowGet);
-            */
-              
             var query =
                 db.Bilet.Join(db.Sefer, bilet => bilet.SeferID, sefer => sefer.SeferID, (bilet, sefer) => bilet)
-                    .Where(b => b.SeferID == 1)
-                    .ToList();
+                    .Where(sefer => sefer.SeferID == id).ToList();
             List<Bilet> lsBilet = query;
             return Json(lsBilet, JsonRequestBehavior.AllowGet);
         }
