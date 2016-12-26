@@ -70,6 +70,27 @@ namespace ValeProject.Controllers
         {
             return View();
         }
+        //Yönetici Girişi sayfasına post yapıldıgında
+        [HttpPost]
+        public ActionResult YoneticiGirisi(FormCollection form)
+        {
+            string email = form["email"];
+            string sifre = form["password"];
+            var context = new ValeDBEntities(); 
+            var query = context.Personel.ToList();
+            int personelId = query.Where(m => m.Email == email)
+                .Select(m=>m.PersonelID)
+                .FirstOrDefault();
+
+            var adminQuery = context.Admin.ToList();
+            var result = adminQuery.Where(a => a.PersonelID == personelId && a.Sifre == sifre).ToList();
+            if (result.Count > 0)
+                ViewBag.mesaj = "Hoşgeldiniz.";
+            else
+                ViewBag.mesaj = "Kullanıcı Bulunamadı !";
+
+            return View();
+        }
         //İletişim
         public ActionResult Iletisim()
         {
