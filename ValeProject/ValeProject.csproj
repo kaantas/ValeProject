@@ -1061,6 +1061,10 @@
     <Content Include="Views\Home\Iletisim.cshtml" />
     <Content Include="Views\Home\BiletAl.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\Biletlerim.cshtml" />
+    <Content Include="Views\Home\SeferEkle.cshtml" />
+    <Content Include="Views\Home\PersonelEkle.cshtml" />
+    <Content Include="Views\Home\Exit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

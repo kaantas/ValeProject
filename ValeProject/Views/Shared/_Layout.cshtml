@@ -8,7 +8,7 @@
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery-1.9.1.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    
+    <script src="~/Scripts/HeaderActive.js"></script>
     <title>Vale</title>
 </head>
 <body>
@@ -18,13 +18,23 @@
             <!--header navbar top left -->
             <ul class="nav navbar-nav" id="nav-left">
                 <li>
-                    <a href="#">
-                        <i class="fa fa-user" aria-hidden="true"></i>Kaan Taş
+                    <a href="/Home/Biletlerim">
+                            @if (HttpContext.Current.Session["adsoyad"] != null)
+                            {
+                                <i class="fa fa-user" aria-hidden="true">
+                                    @HttpContext.Current.Session["adsoyad"].ToString();
+                                </i>
+                            }
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fa fa-check-square-o" aria-hidden="true"></i>Çıkış
+                    <a href="/Home/Exit">
+                            @if (HttpContext.Current.Session["adsoyad"] != null)
+                            {
+                                <i class="fa fa-check-square-o" aria-hidden="true">
+                                    Çıkış
+                                </i>
+                            }
                     </a>
                 </li>
             </ul>
@@ -48,11 +58,21 @@
     <div class="collapse navbar-collapse" id="main-navigation">
         <div class="container">
             <ul class="nav nav-justified nav-pills">
-                <li id="Index"><a href="~/Home/Index">Ana Sayfa</a></li>
-                <li id="UyeGirisi"><a href="~/Home/UyeGirisi">Üye Girişi</a></li>
-                <li id="UyeOl"><a href="~/Home/UyeOl">Üye Ol</a></li>
-                <li id="YoneticiGirisi"><a href="~/Home/YoneticiGirisi">Yönetici Girişi</a></li>
-                <li id="Iletisim"><a href="~/Home/Iletisim">İletişim</a></li>
+                @if (HttpContext.Current.Session["adsoyad"] != null)
+                {
+                    <li id="Index"><a href="~/Home/Index">Ana Sayfa</a></li>
+                    <li id="BiletAl"><a href="~/Home/BiletAl">Bilet Al</a></li>
+                    <li id="Biletlerim"><a href="~/Home/Biletlerim">Biletlerim</a></li>
+                    <li id="Iletisim"><a href="~/Home/Iletisim">İletişim</a></li>
+                }
+                else
+                {
+                    <li id="Index"><a href="~/Home/Index">Ana Sayfa</a></li>
+                    <li id="UyeGirisi"><a href="~/Home/UyeGirisi">Üye Girişi</a></li>
+                    <li id="UyeOl"><a href="~/Home/UyeOl">Üye Ol</a></li>
+                    <li id="YoneticiGirisi"><a href="~/Home/YoneticiGirisi">Yönetici Girişi</a></li>
+                    <li id="Iletisim"><a href="~/Home/Iletisim">İletişim</a></li>
+                }
             </ul>
         </div>
     </div>
@@ -127,5 +147,5 @@
 </footer>
 </body>
 
-<script src="~/Scripts/HeaderActive.js"></script>
+
 </html>

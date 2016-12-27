@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ValeProject.Models.Bilet>
+@{
+    ViewBag.Title = "Biletlerim";
+}
+<link href="~/css/UyeOl_Style.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+<div class="container" style="padding-top: 55px;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Biletlerim</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <table class="table">
+                            @if (Model != null)
+                            {
+                                <tr style="background: #5cb85c; color: white; font-weight: bold">
+                                    <th>
+                                        Kalkış Şehri
+                                    </th>
+                                    <th>
+                                        Varış Şehri
+                                    </th>
+                                    <th>
+                                        Kalkış Tarihi
+                                    </th>
+                                    <th>
+                                        Kalkış Saati
+                                    </th>
+                                    <th>
+                                        Koltuk Numarası
+                                    </th>
+                                    <th>
+                                        Ücret
+                                    </th>
+                                    <th>
+                                        İşlem Zamanı
+                                    </th>
+                                </tr>
+
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Sefer.KalkisSehri)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Sefer.VarisSehri)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Sefer.KalkisTarihi)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Sefer.KalkisSaati)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.KoltukNo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Ucret)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IslemZamani)
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <h2>
+                                    <center>@ViewBag.mesaj</center>
+                                </h2>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

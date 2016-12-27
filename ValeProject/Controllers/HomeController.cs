@@ -17,8 +17,7 @@ namespace ValeProject.Controllers
         //MainPage
         public ActionResult Index()
         {
-            List <Musteri> ls = db.Musteri.ToList();
-            return View(ls);
+            return View();
         }
         //Üye Girişi
         public ActionResult UyeGirisi()
@@ -34,12 +33,18 @@ namespace ValeProject.Controllers
             var context = new ValeDBEntities();
             var query = context.Musteri.ToList();
             var result = query.Where(m => m.Email == email && m.Sifre == sifre).ToList();
-            if (result.Count > 0) 
-                ViewBag.mesaj = result[0].Ad;
-            else 
+            if (result.Count > 0)
+            {
+                Session["adsoyad"] = result[0].Ad + " " + result[0].Soyad;
+                Session["id"] = result[0].MusteriID;
+                return RedirectToAction("Index");
+            }
+            else
+            {
                 ViewBag.mesaj = "Kullanıcı Bulunamadı !";
-            
-            return View();
+                return View();
+            }
+                
         }
         //Üye Ol
         public ActionResult UyeOl()
@@ -100,7 +105,7 @@ namespace ValeProject.Controllers
         {
             return View();   
         }
-      //  [Route("/Home/GetBilet/{seferId}")]
+      //[Route("/Home/GetBilet/{id}")]
         public JsonResult GetBilet(int id)
         {
             var query =
@@ -147,5 +152,40 @@ namespace ValeProject.Controllers
                 return View();
             }
         }
+        public ActionResult Biletlerim()
+        {
+            List<Bilet> ls = null;
+            var context = new ValeDBEntities();
+            int id = Convert.ToInt32(Session["id"]);
+            var result = context.Bilet.Include("Sefer").Where(b=>b.MusteriID==id).ToList();
+            if (result.Count > 0)
+            {
+                ls = result;
+                return View(ls);
+            }
+            else
+            {
+                ViewBag.mesaj = "Kayıtlı Biletiniz Bulunmamaktadır.";
+                return View();
+            }
+        }
+        public ActionResult SeferEkle()
+        {
+            return View();
+        }
+        public ActionResult PersonelEkle()
+        {
+            return View();
+        }
+        //Login sırasında exit butonuna bastıgında logout ol
+        public ActionResult Exit()
+        {
+            Session["adsoyad"] = null;
+            Session["id"] = null;
+            List <Musteri> ls = db.Musteri.ToList();
+            return View("Index",ls);
+        }
+       
+
     }
 }
