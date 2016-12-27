@@ -1,18 +1,18 @@
 ﻿
 @{
-    ViewBag.Title = "YoneticiGirisi";
+    ViewBag.Title = "Personel Girişi";
 }
 
 <div class="container" style="padding-top: 55px;">
-    <h1>@ViewBag.mesaj</h1>
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Yönetici Girişi</h3>
+                    <h3 class="panel-title">Personel Girişi</h3>
                 </div>
                 <div class="panel-body">
-                    <form accept-charset="UTF-8" role="form" action="/Home/YoneticiGirisi" method="post">
+                    <h3 style="color: #f44242;"><center>@ViewBag.mesaj</center></h3>
+                    <form accept-charset="UTF-8" role="form" action="/Home/PersonelGirisi" method="post">
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Email" name="email" type="text">

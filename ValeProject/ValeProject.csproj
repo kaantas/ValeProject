@@ -1057,7 +1057,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\UyeGirisi.cshtml" />
     <Content Include="Views\Home\UyeOl.cshtml" />
-    <Content Include="Views\Home\YoneticiGirisi.cshtml" />
+    <Content Include="Views\Home\PersonelGirisi.cshtml" />
     <Content Include="Views\Home\Iletisim.cshtml" />
     <Content Include="Views\Home\BiletAl.cshtml" />
     <Content Include="Scripts\version.json" />

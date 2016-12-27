@@ -71,13 +71,13 @@ namespace ValeProject.Controllers
             return View();
         }
         //Yönetici Girişi
-        public ActionResult YoneticiGirisi()
+        public ActionResult PersonelGirisi()
         {
             return View();
         }
         //Yönetici Girişi sayfasına post yapıldıgında
         [HttpPost]
-        public ActionResult YoneticiGirisi(FormCollection form)
+        public ActionResult PersonelGirisi(FormCollection form)
         {
             string email = form["email"];
             string sifre = form["password"];
@@ -86,15 +86,20 @@ namespace ValeProject.Controllers
             int personelId = query.Where(m => m.Email == email)
                 .Select(m=>m.PersonelID)
                 .FirstOrDefault();
-
             var adminQuery = context.Admin.ToList();
             var result = adminQuery.Where(a => a.PersonelID == personelId && a.Sifre == sifre).ToList();
             if (result.Count > 0)
-                ViewBag.mesaj = "Hoşgeldiniz.";
+            {
+                Session["adsoyad"] = result[0].Personel.PersonelAd + " " + result[0].Personel.PersonelSoyad;
+                Session["id"] = result[0].Personel.PersonelID;
+                Session["admin"] = result[0].Sifre;
+                return RedirectToAction("Index");
+            }
             else
+            {
                 ViewBag.mesaj = "Kullanıcı Bulunamadı !";
-
-            return View();
+                return View();
+            }
         }
         //İletişim
         public ActionResult Iletisim()
@@ -105,25 +110,15 @@ namespace ValeProject.Controllers
         {
             return View();   
         }
-      //[Route("/Home/GetBilet/{id}")]
-        public JsonResult GetBilet(int id)
-        {
-            var query =
-                db.Bilet.Join(db.Sefer, bilet => bilet.SeferID, sefer => sefer.SeferID, (bilet, sefer) => bilet)
-                    .Where(sefer => sefer.SeferID == id).ToList();
-            List<Bilet> lsBilet = query;
-            return Json(lsBilet, JsonRequestBehavior.AllowGet);
-        }
-
         [HttpPost]
         public ActionResult BiletAl(FormCollection form)
         {
             Sefer model = new Sefer();
-            List<Sefer> ls=null;
+            List<Sefer> ls = null;
             string kalkisSehri = form["kalkisSehri"];
             string varisSehri = form["varisSehri"];
             string yil;
-            string ay; 
+            string ay;
             string gun;
             string tarih = form["tarih"]; // mm/dd/yyyy
             if (tarih == "")
@@ -133,11 +128,11 @@ namespace ValeProject.Controllers
                 ay = tarih.Substring(0, 2);
                 gun = tarih.Substring(3, 2);
             }
-            yil = tarih.Substring(6,4);
+            yil = tarih.Substring(6, 4);
             ay = tarih.Substring(0, 2);
             gun = tarih.Substring(3, 2);
             string sqlTarih = gun + "/" + ay + "/" + yil;
-            
+
             var context = new ValeDBEntities();
             var result = context.Sefer.Include("Otobus")
                 .Where(m => m.KalkisSehri == kalkisSehri && m.VarisSehri == varisSehri && m.KalkisTarihi == sqlTarih).OrderBy(m => m.KalkisSaati).ToList();
@@ -151,6 +146,15 @@ namespace ValeProject.Controllers
                 ViewBag.mesaj = "Sefer Bulunamadı !";
                 return View();
             }
+        }
+      //[Route("/Home/GetBilet/{id}")]
+        public JsonResult GetBilet(int id)
+        {
+            var query =
+                db.Bilet.Join(db.Sefer, bilet => bilet.SeferID, sefer => sefer.SeferID, (bilet, sefer) => bilet)
+                    .Where(sefer => sefer.SeferID == id).ToList();
+            List<Bilet> lsBilet = query;
+            return Json(lsBilet, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Biletlerim()
         {
@@ -182,8 +186,11 @@ namespace ValeProject.Controllers
         {
             Session["adsoyad"] = null;
             Session["id"] = null;
-            List <Musteri> ls = db.Musteri.ToList();
-            return View("Index",ls);
+            if (Session["admin"] != null)
+            {
+                Session["admin"] = null;
+            }
+            return View("Index");
         }
        
 

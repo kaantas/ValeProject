@@ -18,14 +18,22 @@
             <!--header navbar top left -->
             <ul class="nav navbar-nav" id="nav-left">
                 <li>
-                    <a href="/Home/Biletlerim">
-                            @if (HttpContext.Current.Session["adsoyad"] != null)
-                            {
-                                <i class="fa fa-user" aria-hidden="true">
-                                    @HttpContext.Current.Session["adsoyad"].ToString();
-                                </i>
-                            }
-                    </a>
+                    @if (HttpContext.Current.Session["adsoyad"] != null)
+                    {
+                        <a href="/Home/Biletlerim">
+                            <i class="fa fa-user" aria-hidden="true">
+                                @HttpContext.Current.Session["adsoyad"].ToString()
+                            </i>
+                        </a>
+                    }
+                    else if (HttpContext.Current.Session["adsoyad"] != null && HttpContext.Current.Session["admin"] != null)
+                    {
+                        <a href="/Home/Index">
+                            <i class="fa fa-user" aria-hidden="true">
+                                @HttpContext.Current.Session["adsoyad"].ToString()
+                            </i>
+                        </a>
+                    }
                 </li>
                 <li>
                     <a href="/Home/Exit">
@@ -58,11 +66,19 @@
     <div class="collapse navbar-collapse" id="main-navigation">
         <div class="container">
             <ul class="nav nav-justified nav-pills">
-                @if (HttpContext.Current.Session["adsoyad"] != null)
+                @if (HttpContext.Current.Session["adsoyad"] != null && HttpContext.Current.Session["admin"] == null)
                 {
                     <li id="Index"><a href="~/Home/Index">Ana Sayfa</a></li>
                     <li id="BiletAl"><a href="~/Home/BiletAl">Bilet Al</a></li>
                     <li id="Biletlerim"><a href="~/Home/Biletlerim">Biletlerim</a></li>
+                    <li id="Iletisim"><a href="~/Home/Iletisim">İletişim</a></li>
+                }
+                else if (HttpContext.Current.Session["admin"] != null)
+                {
+                    <li id="Index"><a href="~/Home/Index">Ana Sayfa</a></li>
+                    <li id="BiletAl"><a href="~/Home/BiletAl">Bilet Al</a></li>
+                    <li id="PersonelEkle"><a href="~/Home/PersonelEkle">Yeni Personel Ekle</a></li>
+                    <li id="SeferEkle"><a href="~/Home/SeferEkle">Yeni Sefer Ekle</a></li>
                     <li id="Iletisim"><a href="~/Home/Iletisim">İletişim</a></li>
                 }
                 else
@@ -70,7 +86,7 @@
                     <li id="Index"><a href="~/Home/Index">Ana Sayfa</a></li>
                     <li id="UyeGirisi"><a href="~/Home/UyeGirisi">Üye Girişi</a></li>
                     <li id="UyeOl"><a href="~/Home/UyeOl">Üye Ol</a></li>
-                    <li id="YoneticiGirisi"><a href="~/Home/YoneticiGirisi">Yönetici Girişi</a></li>
+                    <li id="YoneticiGirisi"><a href="~/Home/PersonelGirisi">Personel Girişi</a></li>
                     <li id="Iletisim"><a href="~/Home/Iletisim">İletişim</a></li>
                 }
             </ul>
@@ -94,16 +110,16 @@
                         <li> <a href="Home/Index"> Ana Sayfa </a> </li>
                         <li> <a href="Home/UyeGirisi"> Üye Girişi </a> </li>
                         <li> <a href="Home/UyeOl"> Üye Ol </a> </li>
-                        <li> <a href="Home/YoneticiGirisi"> Yönetici Girişi </a> </li>
+                        <li> <a href="Home/PersonelGirisi"> Personel Girişi </a> </li>
                         <li> <a href="Home/Iletisim"> İletişim </a> </li>
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-4 col-sm-4 col-xs-6">
                     <h3> Üye İşlemleri </h3>
                     <ul>
-                        <li> <a href="#"> Üye Girişi </a> </li>
-                        <li> <a href="#"> Üye Ol </a> </li>
-                        <li> <a href="#"> Yönetici Girişi </a> </li>
+                        <li> <a href="Home/UyeGirisi"> Üye Girişi </a> </li>
+                        <li> <a href="Home/UyeOl"> Üye Ol </a> </li>
+                        <li> <a href="Home/PersonelGirisi"> Personel Girişi </a> </li>
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-4 col-sm-4 col-xs-6"></div>
