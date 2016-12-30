@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Core.Common.CommandTrees;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using ValeProject.Models;
@@ -154,6 +155,25 @@ namespace ValeProject.Controllers
                 db.Bilet.Join(db.Sefer, bilet => bilet.SeferID, sefer => sefer.SeferID, (bilet, sefer) => bilet)
                     .Where(sefer => sefer.SeferID == id).ToList();
             List<Bilet> lsBilet = query;
+            int doluKoltukSize = lsBilet.Count;
+            for (int i = 1; i < 37; i++)
+            {
+                for (int j = 0; j < doluKoltukSize; j++)
+                {
+                    if (lsBilet[j].KoltukNo == i)
+                        break;
+
+                    if (j == doluKoltukSize - 1)
+                    {
+                        Bilet bosBilet = new Bilet();
+                        bosBilet.KoltukNo = i;
+                        bosBilet.SeferID = id;
+                        lsBilet.Add(bosBilet);
+                        break;
+                    }
+                }
+            }
+            lsBilet = lsBilet.OrderBy(o => o.KoltukNo).ToList();
             return Json(lsBilet, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Biletlerim()

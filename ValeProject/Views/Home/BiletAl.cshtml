@@ -115,7 +115,6 @@
                                             <div class="col-md-12">
                                                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="İncele" ng-click="go(@Html.DisplayFor(modelItem => item.SeferID))" style="color: white">
                                             </div>
-                                            <input type="hidden" name="datepickerText" id="datepickerText" value=@Html.DisplayFor(modelItem => item.SeferID)>
                                         </td>
                                     </tr>
                                 }
@@ -129,41 +128,51 @@
                         </table>
                     </div>
 
-                    <div ng-show="v" id="otobus" class="col-md-3">
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td style="padding: 10px" ng-repeat="bilet in biletler" >
-                                    <div id="erkek" ng-if="bilet.MusteriCinsiyet=='Erkek'">
-                                        {{bilet.KoltukNo}}
-                                    </div>
-                                    <div id="kız" ng-if="bilet.MusteriCinsiyet=='Kız'">
-                                        {{bilet.KoltukNo}}
-                                    </div>
-                                    <div id="bos" ng-if="bilet.MusteriCinsiyet==''"></div>
-                                </td>
-                            </tr>                            
-                            </tbody>
-                        </table>
+                    <div ng-show="v"  class="col-md-3">
+                        <div id="otobus" style="width: 250px">
+                            <table>
+                                <tbody>
+                                    <tr ng-repeat="bilet in biletler" ng-if="$index % 3 == 0">
+                                        <td>
+                                            <div class="erkek" ng-if="biletler[$index].MusteriCinsiyet=='Erkek'">
+                                                {{biletler[$index].KoltukNo}}
+                                            </div>
+                                            <div class="kız" ng-if="biletler[$index].MusteriCinsiyet=='Kız'">
+                                                {{biletler[$index].KoltukNo}}
+                                            </div>
+                                            <div class="bos" ng-if="biletler[$index].MusteriCinsiyet==null">
+                                                {{biletler[$index].KoltukNo}}
+                                            </div>
+                                        </td>
+                                        <td class="gorunmez"></td>
+                                        <td class="gorunmez"></td>
+                                        <td ng-if="biletler[$index + 1].KoltukNo != null">
+                                            <div class="erkek" ng-if="biletler[$index+1].MusteriCinsiyet=='Erkek'">
+                                                {{biletler[$index+1].KoltukNo}}
+                                            </div>
+                                            <div class="kız" ng-if="biletler[$index+1].MusteriCinsiyet=='Kız'">
+                                                {{biletler[$index+1].KoltukNo}}
+                                            </div>
+                                            <div class="bos" ng-if="biletler[$index+1].MusteriCinsiyet==null">
+                                                {{biletler[$index+1].KoltukNo}}
+                                            </div>
+                                        </td>
+                                        <td ng-if="biletler[$index + 2].KoltukNo != null">
+                                            <div class="erkek" ng-if="biletler[$index+2].MusteriCinsiyet=='Erkek'">
+                                                {{biletler[$index+2].KoltukNo}}
+                                            </div>
+                                            <div class="kız" ng-if="biletler[$index+2].MusteriCinsiyet=='Kız'">
+                                                {{biletler[$index+2].KoltukNo}}
+                                            </div>
+                                            <div class="bos" ng-if="biletler[$index+2].MusteriCinsiyet==null">
+                                                {{biletler[$index+2].KoltukNo}}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-
-                    <div ng-show="v">
-                        <table>
-                            <tr>
-                                <th>Ad</th>
-                                <th>Soyad</th>
-                                <th>Cinsiyet</th>
-                                <th>Koltuk No</th>
-                            </tr>
-                            <tr ng-repeat="bilet in biletler">
-                                <td>{{bilet.MusteriAd}}</td>
-                                <td>{{bilet.MusteriSoyad}}</td>
-                                <td>{{bilet.MusteriCinsiyet}}</td>
-                                <td>{{bilet.KoltukNo}}</td>
-                            </tr>
-                        </table>
-                    </div>
-
                 </div>
             </div>
         </div>

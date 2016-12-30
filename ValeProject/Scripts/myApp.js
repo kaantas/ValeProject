@@ -10,10 +10,9 @@ myApp.controller('biletController', function ($scope, $http) {
         $http.get("/Home/GetBilet/"+seferId)
             .then(function (result) {
                 $scope.biletler = result.data;
-                console.log($scope.biletler[0].KoltukNo);
             });
     }
-
+    
+    
 });
-
 $scope.apply();

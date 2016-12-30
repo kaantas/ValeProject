@@ -1,4 +1,4 @@
-﻿#erkek {
+﻿.erkek {
     background: rgb(37,107,178); 
     color: white; 
     height: 40px; 
@@ -6,8 +6,12 @@
     text-align: center; 
     vertical-align: middle;
     line-height: 40px;
+    margin-left: 9px; 
+    margin-right: 5px; 
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
-#kız {
+.kız {
     background: rgb(223,45,46); 
     color: white; 
     height: 40px; 
@@ -15,16 +19,33 @@
     text-align: center; 
     vertical-align: middle;
     line-height: 40px;
+    margin-left: 9px; 
+    margin-right: 5px; 
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
-#bos { 
+.bos { 
     color: gray; 
     height: 40px; 
-    width: 40px; 
+    width: 40px;
+    border: 1px gray solid; 
     text-align: center; 
     vertical-align: middle;
     line-height: 40px;
+    margin-left: 9px; 
+    margin-right: 5px; 
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 #otobus {
     border: 1px gray solid; 
-    height: 600px;
-}                          
+    height: 575px;
+}                         
+.gorunmez{
+    height: 40px; 
+    width: 40px;
+    margin-left: 5px; 
+    margin-right: 5px; 
+    margin-top: 2px;
+    margin-bottom: 2px;
+} 
