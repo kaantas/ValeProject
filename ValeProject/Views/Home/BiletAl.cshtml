@@ -24,7 +24,7 @@
     });
 </script>
 
-<div class="container" style="padding-top: 55px;">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -132,47 +132,107 @@
                         <div id="otobus" style="width: 250px">
                             <table>
                                 <tbody>
-                                    <tr ng-repeat="bilet in biletler" ng-if="$index % 3 == 0">
-                                        <td>
-                                            <div class="erkek" ng-if="biletler[$index].MusteriCinsiyet=='Erkek'">
-                                                {{biletler[$index].KoltukNo}}
-                                            </div>
-                                            <div class="kız" ng-if="biletler[$index].MusteriCinsiyet=='Kız'">
-                                                {{biletler[$index].KoltukNo}}
-                                            </div>
-                                            <div class="bos" ng-if="biletler[$index].MusteriCinsiyet==null">
-                                                {{biletler[$index].KoltukNo}}
-                                            </div>
-                                        </td>
-                                        <td class="gorunmez"></td>
-                                        <td class="gorunmez"></td>
-                                        <td ng-if="biletler[$index + 1].KoltukNo != null">
-                                            <div class="erkek" ng-if="biletler[$index+1].MusteriCinsiyet=='Erkek'">
-                                                {{biletler[$index+1].KoltukNo}}
-                                            </div>
-                                            <div class="kız" ng-if="biletler[$index+1].MusteriCinsiyet=='Kız'">
-                                                {{biletler[$index+1].KoltukNo}}
-                                            </div>
-                                            <div class="bos" ng-if="biletler[$index+1].MusteriCinsiyet==null">
-                                                {{biletler[$index+1].KoltukNo}}
-                                            </div>
-                                        </td>
-                                        <td ng-if="biletler[$index + 2].KoltukNo != null">
-                                            <div class="erkek" ng-if="biletler[$index+2].MusteriCinsiyet=='Erkek'">
-                                                {{biletler[$index+2].KoltukNo}}
-                                            </div>
-                                            <div class="kız" ng-if="biletler[$index+2].MusteriCinsiyet=='Kız'">
-                                                {{biletler[$index+2].KoltukNo}}
-                                            </div>
-                                            <div class="bos" ng-if="biletler[$index+2].MusteriCinsiyet==null">
-                                                {{biletler[$index+2].KoltukNo}}
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <tr ng-repeat="bilet in biletler" ng-if="$index % 3 == 0">
+                                    <td>
+                                        <div class="erkek" ng-if="biletler[$index].MusteriCinsiyet=='Erkek'">
+                                            {{biletler[$index].KoltukNo}}
+                                        </div>
+                                        <div class="kız" ng-if="biletler[$index].MusteriCinsiyet=='Kız'">
+                                            {{biletler[$index].KoltukNo}}
+                                        </div>
+                                        <div class="bos" ng-if="biletler[$index].MusteriCinsiyet==null" ng-click="addRow(biletler[$index].SeferID,biletler[$index].KoltukNo)">
+                                            {{biletler[$index].KoltukNo}}
+                                        </div>
+                                    </td>
+                                    <td class="gorunmez"></td>
+                                    <td class="gorunmez"></td>
+                                    <td ng-if="biletler[$index + 1].KoltukNo != null">
+                                        <div class="erkek" ng-if="biletler[$index+1].MusteriCinsiyet=='Erkek'">
+                                            {{biletler[$index+1].KoltukNo}}
+                                        </div>
+                                        <div class="kız" ng-if="biletler[$index+1].MusteriCinsiyet=='Kız'">
+                                            {{biletler[$index+1].KoltukNo}}
+                                        </div>
+                                        <div class="bos" ng-if="biletler[$index+1].MusteriCinsiyet==null" ng-click="addRow(biletler[$index+1].SeferID,biletler[$index+1].KoltukNo)">
+                                            {{biletler[$index+1].KoltukNo}}
+                                        </div>
+                                    </td>
+                                    <td ng-if="biletler[$index + 2].KoltukNo != null">
+                                        <div class="erkek" ng-if="biletler[$index+2].MusteriCinsiyet=='Erkek'">
+                                            {{biletler[$index+2].KoltukNo}}
+                                        </div>
+                                        <div class="kız" ng-if="biletler[$index+2].MusteriCinsiyet=='Kız'">
+                                            {{biletler[$index+2].KoltukNo}}
+                                        </div>
+                                        <div class="bos" ng-if="biletler[$index+2].MusteriCinsiyet==null" ng-click="addRow(biletler[$index+2].SeferID,biletler[$index+2].KoltukNo)">
+                                            {{biletler[$index+2].KoltukNo}}
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
+                    <form accept-charset="UTF-8" role="form" action="/Home/BosBiletAl" method="post">
+                        <div class="col-md-9">
+                            <table class="table">
+                                <thead style="background: gray; color: white">
+                                <tr>
+                                    <th>Bilet Bilgileri</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr style="background: rgb(223, 45, 46); color: white; font-weight: bold">
+                                    <th>Tarih</th>
+                                    <th>Saat</th>
+                                    <th>Kalkış</th>
+                                    <th>Varış</th>
+                                    <th>Koltuk</th>
+                                    <th>Yolcu Adı</th>
+                                    <th>Cinsiyet</th>
+                                    <th>Ücret</th>
+                                </tr>
+                                <tr ng-repeat="row in rows">
+                                    <td name="kalkisTarihi">{{rows[$index].KalkisTarihi}}</td>
+                                    <td name="kalkisSaati">{{rows[$index].KalkisSaati.Hours}}:00</td>
+                                    <td name="kalkisSehri">{{rows[$index].KalkisSehri}}</td>
+                                    <td name="varisSehri">{{rows[$index].VarisSehri}}</td>
+                                    <td name="koltukNo">{{rows[$index].MuavinID}}</td>
+                                    <td>
+                                        <div class="form-group">
+                                            <div class="cols-sm-10">
+                                                <input type="text" class="form-control input-md" name="adSoyad">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <div class="cols-sm-10">
+                                                <select id="" name="cinsiyet" class="form-control input-md">
+                                                    <option>Erkek</option>
+                                                    <option>Kız</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td name="fiyat">{{rows[$index].Fiyat}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-md-2" style="margin-top:100px;">
+                            <input class="btn btn-lg btn-danger btn-block" type="submit" value="Bilet Satın Al" style="color: white">
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>

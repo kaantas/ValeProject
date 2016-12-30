@@ -212,7 +212,62 @@ namespace ValeProject.Controllers
             }
             return View("Index");
         }
-       
+
+        //[Route("/Home/GetSeferVeBilet/{id}")]
+        public JsonResult GetSeferBilgileri(int id)
+        {
+            var query =
+                db.Sefer.Join(db.Bilet, sefer => sefer.SeferID, bilet => bilet.SeferID, (sefer, bilet) => sefer)
+                    .Where(s => s.SeferID == id).FirstOrDefault();
+          //    List<Sefer> lsSefer = query;
+         //   lsSefer = lsSefer.ToList();
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult BosBiletAl(FormCollection form)
+        {
+            if (Session["id"] == null)
+            {
+                ViewBag.mesaj = "Lütfen Giriş Yapınız.";
+                return View();
+            }
+            else
+            {
+                ValeDBEntities db = new ValeDBEntities();
+                Bilet model = new Bilet();
+                string str = form["adSoyad"];
+                string[] adSoyad = str.Split();
+                string ad = adSoyad[0];
+                string soyad = adSoyad[1];
+                model.MusteriAd = ad;
+                model.MusteriSoyad = soyad;
+                model.KoltukNo = Convert.ToInt32(form["koltukNo"]);
+                model.MusteriID = Convert.ToInt32(Session["id"]);
+                model.MusteriCinsiyet = form["cinsiyet"];
+                model.Ucret = Convert.ToDouble(form["ucret"]);
+                model.IslemTipi = "Kredi Kartı";
+                model.BiletTipi = "İnternet";
+                string tarih = DateTime.Now.ToString("d"); //mm/dd/yyyy
+                string yil = tarih.Substring(6, 4);
+                string ay = tarih.Substring(0, 2);
+                string gun = tarih.Substring(3, 2);
+                string sqlTarih = gun + "/" + ay + "/" + yil;
+                model.IslemZamani = sqlTarih;
+
+                string kalkisTarihi = form["kalkisTarihi"];
+                TimeSpan kalkisSaati = TimeSpan.Parse(form["kalkisSaati"]);
+                int seferId = db.Sefer
+                    .Where(s => s.KalkisTarihi==kalkisTarihi && s.KalkisSaati==kalkisSaati && s.KalkisSehri==form["kalkisSehri"] && s.VarisSehri==form["varisSehri"])
+                    .Select(s => s.SeferID)
+                    .FirstOrDefault();
+                model.SeferID = seferId;
+                // model.DogumTarihi = form["dogumTarihi"];
+                db.Bilet.Add(model);
+                db.SaveChanges();
+                return View("Index");
+            }
+          
+        }
 
     }
 }
