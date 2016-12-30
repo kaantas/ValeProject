@@ -1,0 +1,30 @@
+﻿#erkek {
+    background: rgb(37,107,178); 
+    color: white; 
+    height: 40px; 
+    width: 40px; 
+    text-align: center; 
+    vertical-align: middle;
+    line-height: 40px;
+}
+#kız {
+    background: rgb(223,45,46); 
+    color: white; 
+    height: 40px; 
+    width: 40px; 
+    text-align: center; 
+    vertical-align: middle;
+    line-height: 40px;
+}
+#bos { 
+    color: gray; 
+    height: 40px; 
+    width: 40px; 
+    text-align: center; 
+    vertical-align: middle;
+    line-height: 40px;
+}
+#otobus {
+    border: 1px gray solid; 
+    height: 600px;
+}                          
