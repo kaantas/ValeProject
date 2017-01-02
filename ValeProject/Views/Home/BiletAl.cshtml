@@ -186,6 +186,7 @@
                                     <th></th>
                                     <th></th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -200,11 +201,26 @@
                                     <th>Ücret</th>
                                 </tr>
                                 <tr ng-repeat="row in rows">
-                                    <td name="kalkisTarihi">{{rows[$index].KalkisTarihi}}</td>
-                                    <td name="kalkisSaati">{{rows[$index].KalkisSaati.Hours}}:00</td>
-                                    <td name="kalkisSehri">{{rows[$index].KalkisSehri}}</td>
-                                    <td name="varisSehri">{{rows[$index].VarisSehri}}</td>
-                                    <td name="koltukNo">{{rows[$index].MuavinID}}</td>
+                                    <td >
+                                        {{rows[$index].KalkisTarihi}}
+                                        <input type="hidden" value="{{rows[$index].KalkisTarihi}}" name="kalkisTarihi" />
+                                    </td>
+                                    <td >
+                                        {{rows[$index].KalkisSaati}}
+                                        <input type="hidden" value="{{rows[$index].KalkisSaati}}" name="kalkisSaati" />
+                                    </td>
+                                    <td >
+                                        {{rows[$index].KalkisSehri}}
+                                        <input type="hidden" value="{{rows[$index].KalkisSehri}}" name="kalkisSehri" />
+                                    </td>
+                                    <td >
+                                        {{rows[$index].VarisSehri}}
+                                        <input type="hidden" value="{{rows[$index].VarisSehri}}" name="varisSehri" />
+                                    </td>
+                                    <td>
+                                        {{rows[$index].MuavinID}}
+                                        <input type="hidden" value="{{rows[$index].MuavinID}}" name="koltukNo"/>
+                                    </td>
                                     <td>
                                         <div class="form-group">
                                             <div class="cols-sm-10">
@@ -222,7 +238,10 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td name="fiyat">{{rows[$index].Fiyat}}</td>
+                                    <td >
+                                        {{rows[$index].Fiyat}}
+                                        <input type="hidden" value="{{rows[$index].Fiyat}}" name="fiyat" />
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

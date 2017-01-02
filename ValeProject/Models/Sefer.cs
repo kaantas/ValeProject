@@ -28,7 +28,7 @@ namespace ValeProject.Models
         public Nullable<int> MuavinID { get; set; }
         public Nullable<int> TahminiSure { get; set; }
         public string KalkisTarihi { get; set; }
-        public Nullable<System.TimeSpan> KalkisSaati { get; set; }
+        public string KalkisSaati { get; set; }
         public Nullable<decimal> Fiyat { get; set; }
     
         public virtual Otobus Otobus { get; set; }

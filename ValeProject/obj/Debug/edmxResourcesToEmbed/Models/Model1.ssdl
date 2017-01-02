@@ -72,7 +72,7 @@
     <Property Name="SoforID" Type="int" />
     <Property Name="MuavinID" Type="int" />
     <Property Name="KalkisTarihi" Type="nvarchar" MaxLength="10" />
-    <Property Name="KalkisSaati" Type="time" Precision="4" />
+    <Property Name="KalkisSaati" Type="nvarchar" MaxLength="5" />
     <Property Name="TahminiSure" Type="int" />
     <Property Name="Fiyat" Type="money" />
   </EntityType>

@@ -23,7 +23,7 @@
     <Property Name="MusteriSoyad" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="MusteriCinsiyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="Ucret" Type="Double" />
-    <Property Name="IslemZamani" Type="String" />
+    <Property Name="IslemZamani" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
     <Property Name="IslemTipi" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="BiletTipi" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Musteri" Relationship="Self.FK_Bilet_Musteri" FromRole="Bilet" ToRole="Musteri" />
@@ -86,8 +86,8 @@
     <NavigationProperty Name="Otobus" Relationship="Self.FK_Sefer_Otobus" FromRole="Sefer" ToRole="Otobus" />
     <NavigationProperty Name="Personel" Relationship="Self.FK_Sefer_Personel" FromRole="Sefer" ToRole="Personel" />
     <NavigationProperty Name="Personel1" Relationship="Self.FK_Sefer_Personel1" FromRole="Sefer" ToRole="Personel" />
-    <Property Name="KalkisTarihi" Type="String" />
-    <Property Name="KalkisSaati" Type="Time" Precision="4" />
+    <Property Name="KalkisTarihi" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="KalkisSaati" Type="String" />
     <Property Name="Fiyat" Type="Decimal" Precision="19" Scale="4" />
     <NavigationProperty Name="Bilet" Relationship="ValeDBModel.FK_Bilet_Sefer" FromRole="Sefer" ToRole="Bilet" />
   </EntityType>

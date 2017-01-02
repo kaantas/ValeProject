@@ -228,8 +228,7 @@ namespace ValeProject.Controllers
         {
             if (Session["id"] == null)
             {
-                ViewBag.mesaj = "Lütfen Giriş Yapınız.";
-                return View();
+                return View("UyeGirisi");
             }
             else
             {
@@ -241,27 +240,29 @@ namespace ValeProject.Controllers
                 string soyad = adSoyad[1];
                 model.MusteriAd = ad;
                 model.MusteriSoyad = soyad;
-                model.KoltukNo = Convert.ToInt32(form["koltukNo"]);
+                int koltukNo = Convert.ToInt32(form["koltukNo"]);
+                model.KoltukNo = koltukNo;
                 model.MusteriID = Convert.ToInt32(Session["id"]);
                 model.MusteriCinsiyet = form["cinsiyet"];
-                model.Ucret = Convert.ToDouble(form["ucret"]);
+                model.Ucret = Convert.ToDouble(form["fiyat"]);
                 model.IslemTipi = "Kredi Kartı";
                 model.BiletTipi = "İnternet";
-                string tarih = DateTime.Now.ToString("d"); //mm/dd/yyyy
+                string tarih = DateTime.Now.ToString("d");
                 string yil = tarih.Substring(6, 4);
-                string ay = tarih.Substring(0, 2);
-                string gun = tarih.Substring(3, 2);
+                string gun = tarih.Substring(0, 2);
+                string ay = tarih.Substring(3, 2);
                 string sqlTarih = gun + "/" + ay + "/" + yil;
                 model.IslemZamani = sqlTarih;
 
                 string kalkisTarihi = form["kalkisTarihi"];
-                TimeSpan kalkisSaati = TimeSpan.Parse(form["kalkisSaati"]);
+                string kalkisSaati = form["kalkisSaati"];
+                string kalkisSehri = form["kalkisSehri"];
+                string varisSehri = form["varisSehri"];
                 int seferId = db.Sefer
-                    .Where(s => s.KalkisTarihi==kalkisTarihi && s.KalkisSaati==kalkisSaati && s.KalkisSehri==form["kalkisSehri"] && s.VarisSehri==form["varisSehri"])
+                    .Where(s => s.KalkisTarihi==kalkisTarihi && s.KalkisSaati==kalkisSaati && s.KalkisSehri==kalkisSehri && s.VarisSehri==varisSehri)
                     .Select(s => s.SeferID)
                     .FirstOrDefault();
                 model.SeferID = seferId;
-                // model.DogumTarihi = form["dogumTarihi"];
                 db.Bilet.Add(model);
                 db.SaveChanges();
                 return View("Index");
