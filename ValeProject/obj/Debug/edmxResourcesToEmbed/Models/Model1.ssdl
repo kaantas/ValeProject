@@ -51,7 +51,7 @@
     <Key>
       <PropertyRef Name="PersonelID" />
     </Key>
-    <Property Name="PersonelID" Type="int" Nullable="false" />
+    <Property Name="PersonelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PersonelAd" Type="nvarchar" MaxLength="15" />
     <Property Name="PersonelSoyad" Type="nvarchar" MaxLength="15" />
     <Property Name="Cinsiyet" Type="nvarchar" MaxLength="10" />

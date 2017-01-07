@@ -201,6 +201,55 @@ namespace ValeProject.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult PersonelEkle(FormCollection form)
+        {
+            Personel model = new Personel();
+            string ad = form["ad"];
+            string soyad = form["soyad"];
+            string cinsiyet = form["cinsiyet"];
+            string email = form["email"];
+            string telefon = form["telefon"];
+            int maas = Convert.ToInt32(form["maas"]);
+            string adres = form["adres"];
+            string sifre = form["sifre"];
+            string sube = form["sube"];
+            List<string> subeList = sube.Split(',').ToList();
+            string subeAdi = subeList[0];
+            string subeSehir = subeList[1];
+            string personelTipi = form["personelTipi"];
+            var context = new ValeDBEntities();
+
+            model.PersonelAd = ad;
+            model.PersonelSoyad = soyad;
+            model.Cinsiyet = cinsiyet;
+            model.Email = email;
+            model.Tel = telefon;
+            model.Adres = adres;
+            model.Maas = maas;
+            model.PersonelTipi = personelTipi;
+
+            db.Personel.Add(model);
+            db.SaveChanges();
+
+            if (personelTipi == "Admin")
+            {
+                var query = context.Sube.ToList();
+                int subeId = query.Where(m => m.SehirAdi == subeSehir && m.SubeAdi == subeAdi)
+                    .Select(m => m.SubeID)
+                    .FirstOrDefault();
+                var q = context.Personel.ToList();
+                int personelId = q.Where(m => m.PersonelAd == ad && m.PersonelSoyad == soyad && m.PersonelTipi == personelTipi && m.Tel == telefon)
+                    .Select(m => m.PersonelID).FirstOrDefault();
+                Admin admin = new Admin();
+                admin.PersonelID = personelId;
+                admin.SubeID = subeId;
+                admin.Sifre = sifre;
+                db.Admin.Add(admin);
+                db.SaveChanges();
+            }
+            return View();
+        }
         //Login sırasında exit butonuna bastıgında logout ol
         public ActionResult Exit()
         {
