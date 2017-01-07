@@ -40,7 +40,7 @@
     <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="Tel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="Cinsiyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="DogumTarihi" Type="DateTime" Precision="0" />
+    <Property Name="DogumTarihi" Type="String" />
     <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Bilet" Relationship="Self.FK_Bilet_Musteri" FromRole="Musteri" ToRole="Bilet" />

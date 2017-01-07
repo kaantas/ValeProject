@@ -34,7 +34,7 @@
     <Property Name="Email" Type="nvarchar" MaxLength="25" />
     <Property Name="Tel" Type="nvarchar" MaxLength="15" />
     <Property Name="Cinsiyet" Type="nvarchar" MaxLength="10" />
-    <Property Name="DogumTarihi" Type="date" />
+    <Property Name="DogumTarihi" Type="nvarchar" MaxLength="10" />
     <Property Name="Adres" Type="text" />
     <Property Name="Sifre" Type="nvarchar" MaxLength="20" />
   </EntityType>

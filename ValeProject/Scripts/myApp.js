@@ -14,7 +14,7 @@ myApp.controller('biletController', function ($scope, $http) {
     }
 
     $scope.rows = [];
-    $scope.addRow = function(seferId, koltukNo) {
+    $scope.addRow = function (seferId, koltukNo) {
         $http.get("/Home/GetSeferBilgileri/"+seferId)
             .then(function (result) {
                 result.data.MuavinID = koltukNo; //MuavinID = seçili koltuk numarası saklanıyor
