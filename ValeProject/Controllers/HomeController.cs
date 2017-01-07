@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Core.Common.CommandTrees;
-using System.Globalization;
 using System.Linq;
-using System.Threading;
-using System.Web;
 using System.Web.Mvc;
 using ValeProject.Models;
 
@@ -62,7 +57,12 @@ namespace ValeProject.Controllers
             model.Soyad = form["soyad"];
             model.Email = form["email"];
             model.Cinsiyet = form["cinsiyet"];
-           // model.DogumTarihi = form["dogumTarihi"];
+            string tarih = form["dogumTarihi"];
+            string yil = tarih.Substring(6, 4);
+            string ay = tarih.Substring(0, 2);
+            string gun = tarih.Substring(3, 2);
+            string dogumTarihi = gun + "/" + ay + "/" + yil;
+            model.DogumTarihi = dogumTarihi;
             model.Adres = form["adres"];
             model.Tel = form["telefon"];
             model.Sifre = form["sifre"];
@@ -148,7 +148,6 @@ namespace ValeProject.Controllers
                 return View();
             }
         }
-      //[Route("/Home/GetBilet/{id}")]
         public JsonResult GetBilet(int id)
         {
             var query =
@@ -195,11 +194,85 @@ namespace ValeProject.Controllers
         }
         public ActionResult SeferEkle()
         {
+            if (Session["admin"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return View("PersonelGirisi");
+            }
+        }
+        [HttpPost]
+        public ActionResult SeferEkle(FormCollection form)
+        {
+            Sefer sefer = new Sefer();
+            string tarih = form["tarih"];
+            string yil = tarih.Substring(6, 4);
+            string ay = tarih.Substring(0, 2);
+            string gun = tarih.Substring(3, 2);
+            string sqlTarih = gun + "/" + ay + "/" + yil;
+            sefer.KalkisTarihi = sqlTarih;
+
+            string saat = form["saat"];
+            sefer.KalkisSaati = saat;
+
+            sefer.KalkisSehri = form["kalkisSehri"];
+            sefer.VarisSehri = form["varisSehri"];
+
+            var context = new ValeDBEntities();
+            string otobusMarka = form["otobusMarka"];
+            var query = context.Otobus.ToList();
+            int otobusId = query.Where(m => m.Marka == otobusMarka)
+                .Select(m => m.OtobusID)
+                .FirstOrDefault();
+            sefer.OtobusID = otobusId;
+
+            string sofor = form["sofor"];
+            List<string> sList = sofor.Split().ToList();
+            string soforAd = sList[0];
+            string soforSoyad = sList[1];
+            var q = context.Personel.ToList();
+            int soforId = q.Where(m => m.PersonelAd == soforAd && m.PersonelSoyad == soforSoyad)
+                .Select(m => m.PersonelID).FirstOrDefault();
+            if (soforId == 0)
+            {
+                ViewBag.mesaj = "Şoför bulunamadı.";
+                return View();
+            }
+            sefer.SoforID = soforId;
+
+            string muavin = form["muavin"];
+            List<string> mList = muavin.Split().ToList();
+            string muavinAd = mList[0];
+            string muavinSoyad = mList[1];
+            q = context.Personel.ToList();
+            int muavinId = q.Where(m => m.PersonelAd == muavinAd && m.PersonelSoyad == muavinSoyad)
+                .Select(m => m.PersonelID).FirstOrDefault();
+            if (soforId == 0)
+            {
+                ViewBag.mesaj = "Muavin bulunamadı.";
+                return View();
+            }
+            sefer.MuavinID = muavinId;
+
+            sefer.TahminiSure = Convert.ToInt32(form["sure"]);
+            sefer.Fiyat = Convert.ToDouble(form["fiyat"]);
+
+            db.Sefer.Add(sefer);
+            db.SaveChanges();
             return View();
         }
         public ActionResult PersonelEkle()
         {
-            return View();
+            if (Session["admin"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return View("PersonelGirisi");
+            }
         }
         [HttpPost]
         public ActionResult PersonelEkle(FormCollection form)
@@ -239,8 +312,12 @@ namespace ValeProject.Controllers
                     .Select(m => m.SubeID)
                     .FirstOrDefault();
                 var q = context.Personel.ToList();
-                int personelId = q.Where(m => m.PersonelAd == ad && m.PersonelSoyad == soyad && m.PersonelTipi == personelTipi && m.Tel == telefon)
-                    .Select(m => m.PersonelID).FirstOrDefault();
+                int personelId =
+                    q.Where(
+                            m =>
+                                m.PersonelAd == ad && m.PersonelSoyad == soyad && m.PersonelTipi == personelTipi &&
+                                m.Tel == telefon)
+                        .Select(m => m.PersonelID).FirstOrDefault();
                 Admin admin = new Admin();
                 admin.PersonelID = personelId;
                 admin.SubeID = subeId;
@@ -268,8 +345,6 @@ namespace ValeProject.Controllers
             var query =
                 db.Sefer.Join(db.Bilet, sefer => sefer.SeferID, bilet => bilet.SeferID, (sefer, bilet) => sefer)
                     .Where(s => s.SeferID == id).FirstOrDefault();
-          //    List<Sefer> lsSefer = query;
-         //   lsSefer = lsSefer.ToList();
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]

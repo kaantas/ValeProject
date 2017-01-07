@@ -29,7 +29,7 @@ namespace ValeProject.Models
         public Nullable<int> TahminiSure { get; set; }
         public string KalkisTarihi { get; set; }
         public string KalkisSaati { get; set; }
-        public Nullable<decimal> Fiyat { get; set; }
+        public Nullable<double> Fiyat { get; set; }
     
         public virtual Otobus Otobus { get; set; }
         public virtual Personel Personel { get; set; }

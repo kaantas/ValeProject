@@ -26,7 +26,7 @@ namespace ValeProject.Models
         public string Email { get; set; }
         public string Tel { get; set; }
         public string Cinsiyet { get; set; }
-        public Nullable<System.DateTime> DogumTarihi { get; set; }
+        public string DogumTarihi { get; set; }
         public string Adres { get; set; }
         public string Sifre { get; set; }
     

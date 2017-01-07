@@ -65,7 +65,7 @@
     <Key>
       <PropertyRef Name="SeferID" />
     </Key>
-    <Property Name="SeferID" Type="int" Nullable="false" />
+    <Property Name="SeferID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="KalkisSehri" Type="nvarchar" MaxLength="15" />
     <Property Name="VarisSehri" Type="nvarchar" MaxLength="15" />
     <Property Name="OtobusID" Type="int" />
@@ -74,7 +74,7 @@
     <Property Name="KalkisTarihi" Type="nvarchar" MaxLength="10" />
     <Property Name="KalkisSaati" Type="nvarchar" MaxLength="5" />
     <Property Name="TahminiSure" Type="int" />
-    <Property Name="Fiyat" Type="money" />
+    <Property Name="Fiyat" Type="float" />
   </EntityType>
   <EntityType Name="Sube">
     <Key>

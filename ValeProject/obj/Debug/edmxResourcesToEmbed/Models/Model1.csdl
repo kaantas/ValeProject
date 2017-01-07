@@ -88,7 +88,7 @@
     <NavigationProperty Name="Personel1" Relationship="Self.FK_Sefer_Personel1" FromRole="Sefer" ToRole="Personel" />
     <Property Name="KalkisTarihi" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
     <Property Name="KalkisSaati" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
-    <Property Name="Fiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Fiyat" Type="Double" />
     <NavigationProperty Name="Bilet" Relationship="ValeDBModel.FK_Bilet_Sefer" FromRole="Sefer" ToRole="Bilet" />
   </EntityType>
   <EntityType Name="Sube">

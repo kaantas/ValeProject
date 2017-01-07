@@ -1,7 +1,108 @@
-﻿
-@{
-    ViewBag.Title = "SeferEkle";
-}
+﻿<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 
-<h2>SeferEkle</h2>
-
+<!-- DatePicker -->
+<script type="text/javascript" src="/scripts/moment.min.js"></script>
+<script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="/scripts/bootstrap-datetimepicker.js"></script>
+<link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+</script>
+<div class="container" style="padding-top: 35px;">
+    <h2 style="color: white;"><center>@ViewBag.mesaj</center></h2>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Sefer Ekle</h3>
+                </div>
+                <div class="panel-body">
+                    <form accept-charset="UTF-8" role="form" action="/Home/SeferEkle" method="post">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="email" class="cols-sm-2 control-label">Kalkış Şehri</label>
+                                <div class="cols-sm-10">
+                                    <select id="selectbasic" name="kalkisSehri" class="form-control input-md">
+                                        <option>İstanbul</option>
+                                        <option>Eskişehir</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="cols-sm-2 control-label">Varış Şehri</label>
+                                <div class="cols-sm-10">
+                                    <select id="selectbasic" name="varisSehri" class="form-control input-md">
+                                        <option>Eskişehir</option>
+                                        <option>Bursa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="cols-sm-2 control-label">Otobüs Markası</label>
+                                <div class="cols-sm-10">
+                                    <select id="" name="otobusMarka" class="form-control input-md">
+                                        <option>Mercedes</option>
+                                        <option>Tourismo</option>
+                                        <option>Volvo</option>
+                                        <option>Temsa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="cols-sm-2 control-label">Şoför İsmi</label>
+                                <div class="cols-sm-10">
+                                    <input type="text" name="sofor" class="form-control input-md">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="cols-sm-2 control-label">Muavin İsmi</label>
+                                <div class="cols-sm-10">
+                                    <input type="text" name="muavin" class="form-control input-md">
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <label for="email" class="cols-sm-2 control-label">Kalkış Tarihi</label>
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <input type='text' name="tarih" class="form-control"/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="cols-sm-2 control-label">Kalkış Saati</label>
+                                <div class="cols-sm-10">
+                                    <input type="text" name="saat" class="form-control input-md" placeholder="Ör: 20:00">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="cols-sm-2 control-label">Tahmini Süre</label>
+                                <div class="cols-sm-10">
+                                    <input type="text" name="sure" class="form-control input-md">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="cols-sm-2 control-label">Birim Bilet Fiyatı</label>
+                                <div class="cols-sm-10">
+                                    <input type="text" name="fiyat" class="form-control input-md">
+                                </div>
+                            </div>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Ekle" style="color: white">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd hh:ii' });
+</script>
