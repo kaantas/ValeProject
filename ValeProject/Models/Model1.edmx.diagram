@@ -12,13 +12,10 @@
         <EntityTypeShape EntityType="ValeDBModel.Personel" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="ValeDBModel.Sefer" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ValeDBModel.Sube" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ValeDBModel.SubeBilet" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ValeDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
         <AssociationConnector Association="ValeDBModel.FK_Admin_Personel" ManuallyRouted="false" />
         <AssociationConnector Association="ValeDBModel.FK_Admin_Sube" ManuallyRouted="false" />
-        <AssociationConnector Association="ValeDBModel.FK_SubeBilet_Admin" ManuallyRouted="false" />
         <AssociationConnector Association="ValeDBModel.FK_Bilet_Musteri" ManuallyRouted="false" />
-        <AssociationConnector Association="ValeDBModel.FK_SubeBilet_Bilet" ManuallyRouted="false" />
         <AssociationConnector Association="ValeDBModel.FK_Sefer_Otobus" ManuallyRouted="false" />
         <AssociationConnector Association="ValeDBModel.FK_Sefer_Personel" ManuallyRouted="false" />
         <AssociationConnector Association="ValeDBModel.FK_Sefer_Personel1" ManuallyRouted="false" />

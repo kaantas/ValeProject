@@ -35,7 +35,6 @@ namespace ValeProject.Models
         public virtual DbSet<Personel> Personel { get; set; }
         public virtual DbSet<Sefer> Sefer { get; set; }
         public virtual DbSet<Sube> Sube { get; set; }
-        public virtual DbSet<SubeBilet> SubeBilet { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
         public virtual ObjectResult<biletGetir_Result> biletGetir(string email, string sifre)

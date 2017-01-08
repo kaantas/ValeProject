@@ -369,8 +369,6 @@ namespace ValeProject.Controllers
                 model.MusteriID = Convert.ToInt32(Session["id"]);
                 model.MusteriCinsiyet = form["cinsiyet"];
                 model.Ucret = Convert.ToDouble(form["fiyat"]);
-                model.IslemTipi = "Kredi Kartı";
-                model.BiletTipi = "İnternet";
                 string tarih = DateTime.Now.ToString("d");
                 string yil = tarih.Substring(6, 4);
                 string gun = tarih.Substring(0, 2);

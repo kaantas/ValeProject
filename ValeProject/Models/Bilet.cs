@@ -22,11 +22,8 @@ namespace ValeProject.Models
         public string MusteriCinsiyet { get; set; }
         public Nullable<double> Ucret { get; set; }
         public string IslemZamani { get; set; }
-        public string IslemTipi { get; set; }
-        public string BiletTipi { get; set; }
     
         public virtual Musteri Musteri { get; set; }
-        public virtual SubeBilet SubeBilet { get; set; }
         public virtual Sefer Sefer { get; set; }
     }
 }

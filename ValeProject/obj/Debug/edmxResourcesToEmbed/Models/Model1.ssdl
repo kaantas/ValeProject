@@ -21,8 +21,6 @@
     <Property Name="MusteriCinsiyet" Type="nvarchar" MaxLength="10" />
     <Property Name="Ucret" Type="float" />
     <Property Name="IslemZamani" Type="nvarchar" MaxLength="10" />
-    <Property Name="IslemTipi" Type="nvarchar" MaxLength="15" />
-    <Property Name="BiletTipi" Type="nvarchar" MaxLength="15" />
   </EntityType>
   <EntityType Name="Musteri">
     <Key>
@@ -83,15 +81,6 @@
     <Property Name="SubeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SubeAdi" Type="nvarchar" MaxLength="20" />
     <Property Name="SehirAdi" Type="nvarchar" MaxLength="20" />
-  </EntityType>
-  <EntityType Name="SubeBilet">
-    <Key>
-      <PropertyRef Name="SeferID" />
-      <PropertyRef Name="KoltukNo" />
-    </Key>
-    <Property Name="SeferID" Type="int" Nullable="false" />
-    <Property Name="KoltukNo" Type="int" Nullable="false" />
-    <Property Name="PersonelID" Type="int" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -187,32 +176,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SubeBilet_Admin">
-    <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
-    <End Role="SubeBilet" Type="Self.SubeBilet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Admin">
-        <PropertyRef Name="PersonelID" />
-      </Principal>
-      <Dependent Role="SubeBilet">
-        <PropertyRef Name="PersonelID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SubeBilet_Bilet">
-    <End Role="Bilet" Type="Self.Bilet" Multiplicity="1" />
-    <End Role="SubeBilet" Type="Self.SubeBilet" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Bilet">
-        <PropertyRef Name="SeferID" />
-        <PropertyRef Name="KoltukNo" />
-      </Principal>
-      <Dependent Role="SubeBilet">
-        <PropertyRef Name="SeferID" />
-        <PropertyRef Name="KoltukNo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Function Name="biletGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
     <Parameter Name="Sifre" Type="nvarchar" Mode="In" />
@@ -253,7 +216,6 @@
     <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sefer" EntityType="Self.Sefer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sube" EntityType="Self.Sube" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SubeBilet" EntityType="Self.SubeBilet" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Admin_Personel" Association="Self.FK_Admin_Personel">
       <End Role="Personel" EntitySet="Personel" />
@@ -282,14 +244,6 @@
     <AssociationSet Name="FK_Sefer_Personel1" Association="Self.FK_Sefer_Personel1">
       <End Role="Personel" EntitySet="Personel" />
       <End Role="Sefer" EntitySet="Sefer" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SubeBilet_Admin" Association="Self.FK_SubeBilet_Admin">
-      <End Role="Admin" EntitySet="Admin" />
-      <End Role="SubeBilet" EntitySet="SubeBilet" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SubeBilet_Bilet" Association="Self.FK_SubeBilet_Bilet">
-      <End Role="Bilet" EntitySet="Bilet" />
-      <End Role="SubeBilet" EntitySet="SubeBilet" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

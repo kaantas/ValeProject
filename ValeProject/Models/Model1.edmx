@@ -26,8 +26,6 @@
           <Property Name="MusteriCinsiyet" Type="nvarchar" MaxLength="10" />
           <Property Name="Ucret" Type="float" />
           <Property Name="IslemZamani" Type="nvarchar" MaxLength="10" />
-          <Property Name="IslemTipi" Type="nvarchar" MaxLength="15" />
-          <Property Name="BiletTipi" Type="nvarchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Musteri">
           <Key>
@@ -88,15 +86,6 @@
           <Property Name="SubeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubeAdi" Type="nvarchar" MaxLength="20" />
           <Property Name="SehirAdi" Type="nvarchar" MaxLength="20" />
-        </EntityType>
-        <EntityType Name="SubeBilet">
-          <Key>
-            <PropertyRef Name="SeferID" />
-            <PropertyRef Name="KoltukNo" />
-          </Key>
-          <Property Name="SeferID" Type="int" Nullable="false" />
-          <Property Name="KoltukNo" Type="int" Nullable="false" />
-          <Property Name="PersonelID" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -192,32 +181,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SubeBilet_Admin">
-          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
-          <End Role="SubeBilet" Type="Self.SubeBilet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Admin">
-              <PropertyRef Name="PersonelID" />
-            </Principal>
-            <Dependent Role="SubeBilet">
-              <PropertyRef Name="PersonelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubeBilet_Bilet">
-          <End Role="Bilet" Type="Self.Bilet" Multiplicity="1" />
-          <End Role="SubeBilet" Type="Self.SubeBilet" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Bilet">
-              <PropertyRef Name="SeferID" />
-              <PropertyRef Name="KoltukNo" />
-            </Principal>
-            <Dependent Role="SubeBilet">
-              <PropertyRef Name="SeferID" />
-              <PropertyRef Name="KoltukNo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="biletGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
           <Parameter Name="Sifre" Type="nvarchar" Mode="In" />
@@ -258,7 +221,6 @@
           <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sefer" EntityType="Self.Sefer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sube" EntityType="Self.Sube" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SubeBilet" EntityType="Self.SubeBilet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Admin_Personel" Association="Self.FK_Admin_Personel">
             <End Role="Personel" EntitySet="Personel" />
@@ -288,14 +250,6 @@
             <End Role="Personel" EntitySet="Personel" />
             <End Role="Sefer" EntitySet="Sefer" />
           </AssociationSet>
-          <AssociationSet Name="FK_SubeBilet_Admin" Association="Self.FK_SubeBilet_Admin">
-            <End Role="Admin" EntitySet="Admin" />
-            <End Role="SubeBilet" EntitySet="SubeBilet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubeBilet_Bilet" Association="Self.FK_SubeBilet_Bilet">
-            <End Role="Bilet" EntitySet="Bilet" />
-            <End Role="SubeBilet" EntitySet="SubeBilet" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -310,7 +264,6 @@
           <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Personel" Relationship="Self.FK_Admin_Personel" FromRole="Admin" ToRole="Personel" />
           <NavigationProperty Name="Sube" Relationship="Self.FK_Admin_Sube" FromRole="Admin" ToRole="Sube" />
-          <NavigationProperty Name="SubeBilet" Relationship="Self.FK_SubeBilet_Admin" FromRole="Admin" ToRole="SubeBilet" />
         </EntityType>
         <EntityType Name="Bilet">
           <Key>
@@ -325,10 +278,7 @@
           <Property Name="MusteriCinsiyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Ucret" Type="Double" />
           <Property Name="IslemZamani" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="IslemTipi" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="BiletTipi" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Musteri" Relationship="Self.FK_Bilet_Musteri" FromRole="Bilet" ToRole="Musteri" />
-          <NavigationProperty Name="SubeBilet" Relationship="Self.FK_SubeBilet_Bilet" FromRole="Bilet" ToRole="SubeBilet" />
           <NavigationProperty Name="Sefer" Relationship="ValeDBModel.FK_Bilet_Sefer" FromRole="Bilet" ToRole="Sefer" />
         </EntityType>
         <EntityType Name="Musteri">
@@ -341,7 +291,7 @@
           <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="Tel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Cinsiyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="DogumTarihi" Type="String" />
+          <Property Name="DogumTarihi" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Bilet" Relationship="Self.FK_Bilet_Musteri" FromRole="Musteri" ToRole="Bilet" />
@@ -401,17 +351,6 @@
           <Property Name="SehirAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Admin" Relationship="Self.FK_Admin_Sube" FromRole="Sube" ToRole="Admin" />
         </EntityType>
-        <EntityType Name="SubeBilet">
-          <Key>
-            <PropertyRef Name="SeferID" />
-            <PropertyRef Name="KoltukNo" />
-          </Key>
-          <Property Name="SeferID" Type="Int32" Nullable="false" />
-          <Property Name="KoltukNo" Type="Int32" Nullable="false" />
-          <Property Name="PersonelID" Type="Int32" />
-          <NavigationProperty Name="Admin" Relationship="Self.FK_SubeBilet_Admin" FromRole="SubeBilet" ToRole="Admin" />
-          <NavigationProperty Name="Bilet" Relationship="Self.FK_SubeBilet_Bilet" FromRole="SubeBilet" ToRole="Bilet" />
-        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -446,18 +385,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SubeBilet_Admin">
-          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
-          <End Role="SubeBilet" Type="Self.SubeBilet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Admin">
-              <PropertyRef Name="PersonelID" />
-            </Principal>
-            <Dependent Role="SubeBilet">
-              <PropertyRef Name="PersonelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Bilet_Musteri">
           <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
           <End Role="Bilet" Type="Self.Bilet" Multiplicity="*" />
@@ -467,20 +394,6 @@
             </Principal>
             <Dependent Role="Bilet">
               <PropertyRef Name="MusteriID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubeBilet_Bilet">
-          <End Role="Bilet" Type="Self.Bilet" Multiplicity="1" />
-          <End Role="SubeBilet" Type="Self.SubeBilet" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Bilet">
-              <PropertyRef Name="SeferID" />
-              <PropertyRef Name="KoltukNo" />
-            </Principal>
-            <Dependent Role="SubeBilet">
-              <PropertyRef Name="SeferID" />
-              <PropertyRef Name="KoltukNo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -528,7 +441,6 @@
           <EntitySet Name="Personel" EntityType="Self.Personel" />
           <EntitySet Name="Sefer" EntityType="Self.Sefer" />
           <EntitySet Name="Sube" EntityType="Self.Sube" />
-          <EntitySet Name="SubeBilet" EntityType="Self.SubeBilet" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK_Admin_Personel" Association="Self.FK_Admin_Personel">
             <End Role="Personel" EntitySet="Personel" />
@@ -538,17 +450,9 @@
             <End Role="Sube" EntitySet="Sube" />
             <End Role="Admin" EntitySet="Admin" />
           </AssociationSet>
-          <AssociationSet Name="FK_SubeBilet_Admin" Association="Self.FK_SubeBilet_Admin">
-            <End Role="Admin" EntitySet="Admin" />
-            <End Role="SubeBilet" EntitySet="SubeBilet" />
-          </AssociationSet>
           <AssociationSet Name="FK_Bilet_Musteri" Association="Self.FK_Bilet_Musteri">
             <End Role="Musteri" EntitySet="Musteri" />
             <End Role="Bilet" EntitySet="Bilet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubeBilet_Bilet" Association="Self.FK_SubeBilet_Bilet">
-            <End Role="Bilet" EntitySet="Bilet" />
-            <End Role="SubeBilet" EntitySet="SubeBilet" />
           </AssociationSet>
           <AssociationSet Name="FK_Sefer_Otobus" Association="Self.FK_Sefer_Otobus">
             <End Role="Otobus" EntitySet="Otobus" />
@@ -642,9 +546,7 @@
                 <ScalarProperty Name="MusteriCinsiyet" ColumnName="MusteriCinsiyet" />
                 <ScalarProperty Name="Ucret" ColumnName="Ucret" />
                 <ScalarProperty Name="IslemZamani" ColumnName="IslemZamani" />
-                <ScalarProperty Name="IslemTipi" ColumnName="IslemTipi" />
-                <ScalarProperty Name="BiletTipi" ColumnName="BiletTipi" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Musteri">
@@ -709,15 +611,6 @@
                 <ScalarProperty Name="SubeID" ColumnName="SubeID" />
                 <ScalarProperty Name="SubeAdi" ColumnName="SubeAdi" />
                 <ScalarProperty Name="SehirAdi" ColumnName="SehirAdi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SubeBilet">
-            <EntityTypeMapping TypeName="ValeDBModel.SubeBilet">
-              <MappingFragment StoreEntitySet="SubeBilet">
-                <ScalarProperty Name="SeferID" ColumnName="SeferID" />
-                <ScalarProperty Name="KoltukNo" ColumnName="KoltukNo" />
-                <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

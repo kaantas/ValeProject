@@ -21,8 +21,6 @@
           <ScalarProperty Name="MusteriCinsiyet" ColumnName="MusteriCinsiyet" />
           <ScalarProperty Name="Ucret" ColumnName="Ucret" />
           <ScalarProperty Name="IslemZamani" ColumnName="IslemZamani" />
-          <ScalarProperty Name="IslemTipi" ColumnName="IslemTipi" />
-          <ScalarProperty Name="BiletTipi" ColumnName="BiletTipi" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -88,15 +86,6 @@
           <ScalarProperty Name="SubeID" ColumnName="SubeID" />
           <ScalarProperty Name="SubeAdi" ColumnName="SubeAdi" />
           <ScalarProperty Name="SehirAdi" ColumnName="SehirAdi" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SubeBilet">
-      <EntityTypeMapping TypeName="ValeDBModel.SubeBilet">
-        <MappingFragment StoreEntitySet="SubeBilet">
-          <ScalarProperty Name="SeferID" ColumnName="SeferID" />
-          <ScalarProperty Name="KoltukNo" ColumnName="KoltukNo" />
-          <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
